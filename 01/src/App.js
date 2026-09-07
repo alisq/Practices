@@ -169,7 +169,7 @@ function App() {
       </header>
 
       <h1 className="project-description">
-        Designing a “revival typeface” based on previously undigitized font.
+        Designing a “revival typeface” based on a previously undigitized font.
       </h1>
 
       <aside className="prompt-deck" aria-label="Research prompt cards">
