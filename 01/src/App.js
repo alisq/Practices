@@ -5,14 +5,15 @@ const STORAGE_KEY = 'research-process-map-v1';
 const STUDENT_NAMES_KEY = 'research-process-student-names-v1';
 
 const promptCards = [
-  'What do I think I already know?',
-  'Who is missing from this account?',
-  'What evidence would change my mind?',
-  'Where does this story begin?',
-  'What pattern keeps repeating?',
-  'Whose interests are being served?',
-  'What can only be learned by making?',
-  'What new question has appeared?',
+  
+  'Scanning images of old type specimens at a physical archive',
+  'Sharing a beta version of the font with designer friends to test',
+  'Surveying current type foundries online for similar typefaces',
+  'Exploring online archives for inspiration',
+  'Reading Designing Type Revivals to decide how much of the original ink-on-paper artifact to carry into the digital version',
+  'Watching tutorials on specific features in Glyphs',
+  'Asking Claude about the history of the original typeface, its foundry, and its designer',
+  'Meeting with instructor and/or archivist to find examples of the original typeface in use',
 ];
 
 const createCards = () => (
@@ -117,7 +118,12 @@ function App() {
   };
 
   const resetCards = () => {
-    setCards((current) => current.map((card) => ({ ...card, position: null })));
+    setCards((current) => current.map((card) => ({
+      ...card,
+      commentary: '',
+      position: null,
+    })));
+    setStudentNames('Student names');
   };
 
   const updateCommentary = (id, commentary) => {
@@ -162,7 +168,9 @@ function App() {
         </div>
       </header>
 
-      <h1 className="project-description">Project description will go here</h1>
+      <h1 className="project-description">
+        Designing a “revival typeface” based on previously undigitized font.
+      </h1>
 
       <aside className="prompt-deck" aria-label="Research prompt cards">
         <div className="card-stack">
