@@ -25,6 +25,12 @@ const createCards = () => (
   }))
 );
 
+const getSpectrumColor = (position) => {
+  const y = Number.isFinite(position?.y) ? position.y : 1;
+  const hue = 199 + (59 - 199) * Math.max(0, Math.min(1, y));
+  return `hsl(${hue} 100% 50%)`;
+};
+
 const loadCards = () => {
   const defaults = createCards();
 
@@ -79,16 +85,23 @@ function App() {
       id: card.id,
       x: event.clientX,
       y: event.clientY,
+      mapY: card.position?.y ?? 1,
       origin: card.position,
     });
   };
 
   const moveCard = (event) => {
     if (!dragging) return;
+    const timeline = timelineRef.current?.getBoundingClientRect();
+    const mapY = timeline
+      ? Math.max(0, Math.min(1, (event.clientY - timeline.top) / timeline.height))
+      : 1;
+
     setDragging((current) => current ? {
       ...current,
       x: event.clientX,
       y: event.clientY,
+      mapY,
     } : null);
   };
 
@@ -192,6 +205,7 @@ function App() {
                   left: dragging.x,
                   top: dragging.y,
                   transform: 'translate(-50%, -50%) rotate(-2deg)',
+                  backgroundColor: getSpectrumColor({ y: dragging.mapY }),
                 } : {
                   left: stackIndex * 3,
                   top: stackIndex * 22,
@@ -245,9 +259,11 @@ function App() {
                 left: dragging.x,
                 top: dragging.y,
                 transform: 'translate(-50%, -50%) rotate(-2deg)',
+                backgroundColor: getSpectrumColor({ y: dragging.mapY }),
               } : {
                 left: `${card.position.x * 100}%`,
                 top: `${card.position.y * 100}%`,
+                backgroundColor: getSpectrumColor(card.position),
               }}
             >
               <strong>{card.prompt}</strong>
