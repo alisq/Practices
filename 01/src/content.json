@@ -102,6 +102,33 @@
     "Sourcing and pricing components to see what the kit costs at fifty units versus five hundred",
     "Testing the kit with someone who has never done this before, and watching without helping"
   ]
+}, 
+{
+  "projectDescription": "Working with an illustrator to art direct spot illustrations for a cover story in The Walrus",
+  "prompts": [
+    "Reading the piece to understand its argument/narrative clearly",
+    "Reading on the relationship between text and image to decide whether the spots illustrate, interrupt, or argue",
+    "Meeting with the editor to learn what the story can't be seen to be saying",
+    "Building a reference deck of illustrators whose work would suit the tone and subject matter of the article",
+    "Writing the brief so it names a problem to solve rather than a picture to make",
+    "Mapping where the spots fall against the page grid and the flow of the text",
+    "Giving feedback on sketches in terms of the story's beats"
+  ]
+},
+{
+  "projectDescription": "Working with a local politician to develop an ongoing series of social media videos profiling bylaws and civic services",
+  "prompts": [
+    "Reading on public communication and propaganda to decide where explaining ends and campaigning begins",
+    "Reading the actual bylaw text to see how much of it survives translation into ninety seconds",
+    "Meeting with the councillor's staff to learn what they can say in an official capacity and what they can't",
+    "Asking an AI agent how the service is structured and which level of government is actually responsible",
+    "Shadowing a city worker delivering the service, and shooting reference footage while there",
+    "Studying how other municipal accounts handle vertical video, captions, and sound-off viewing",
+    "Building a title, caption, and lower-third system that holds up across fifty episodes made by different hands",
+    "Testing a cut with residents who have never contacted the city, and seeing whether they understand what to do next"
+  ]
 }
+
+
 ]
 

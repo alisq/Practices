@@ -188,9 +188,8 @@ function App() {
     <main className="site-shell">
       <header className="topbar">
         <div className="topbar-left">
-          <p className="instruction"><span>Drag</span> prompts onto the timeline</p>
-          <label className="data-picker">
-            <span>Get data</span>
+          <label className="data-picker" aria-label="Select project">
+            <span>Project Description:</span>
             <select value={selectedDataset} onChange={selectDataset}>
               {datasets.map((dataset, index) => (
                 <option value={index} key={`${index}-${dataset.projectDescription}`}>
