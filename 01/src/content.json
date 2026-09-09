@@ -1,0 +1,107 @@
+[{
+  "projectDescription": "Designing a “revival typeface” based on a previously undigitized font.",
+  "prompts": [
+    "Scanning images of old type specimens at a physical archive",
+    "Sharing a beta version of the font with designer friends to test",
+    "Surveying current type foundries online for similar typefaces",
+    "Exploring online archives for inspiration",
+    "Reading Designing Type Revivals to decide how much of the original ink-on-paper artifact to carry into the digital version",
+    "Watching tutorials on specific features in Glyphs",
+    "Asking an AI agent about the history of the original typeface, its foundry, and its designer",
+    "Meeting with instructor and/or archivist to find examples of the original typeface in use"
+  ]
+},
+{
+  "projectDescription": "Working with a news outlet to improve the user experience of their digital product",
+  "prompts": [
+    "Shadowing an editor through a morning production cycle in the newsroom",
+    "Sharing a clickable prototype with regular readers to test",
+    "Surveying how other newspapers online handle paywalls and subscription flows",
+    "Exploring online archives of the paper's past print and web redesigns for inspiration",
+    "Reading The Elements of User Experience to decide how much of the print edition's hierarchy to carry into the digital version",
+    "Watching tutorials on specific features in Figma",
+    "Searching the web about the history of the newspaper, its ownership, and its editorial position",
+    "Conducting workshops with readers to see how they move through the current site",
+    "Conducting workshops with readers to see how they  move through the redesigned site"
+  ]
+},
+{
+  "projectDescription": "Designing wall graphics and a monograph for a group exhibition at a contemporary art museum",
+  "prompts": [
+    "Visiting the empty gallery to measure walls, sightlines, and lighting",
+    "Mocking up vinyl lettering at full scale in the studio to test legibility from across a room",
+    "Meeting with curator about the sequence of rooms and what a visitor should notice first",
+    "Building a scale mockup of the gallery space",
+    "Doing suggested readings provided by artists to help conceptualize relationship between work and gallery",
+    "Collecting catalogues from comparable shows to study how essays, plates, and checklists are ordered",
+    "Meeting with the fabricator to understand cutting constraints and installation tolerances",
+    "Visiting the printer to check capabilityies and compare paper stocks/binding options",
+    "Reading interviews, reviews and critiques of artists' works"
+  ]
+},
+{
+  "projectDescription": "Designing an interactive data visualization for a national news outlet about an ongoing economic and geopolitical crisis",
+  "prompts": [
+    "Tracing a dataset back to the agency that produced it to learn what its categories count and exclude",
+    "Searching web to explain indicators in play and how economists disagree about what they measure",
+    "Collecting examples of compelling interactive visualizations on are.na",
+    "Sketching the piece on paper first to decide what the reader should be able to do, not just see",
+    "Prototyping initial visualization in Datawrapper to test legibility",
+    "Reading on the politics of quantification to decide what a single figure is being asked to stand in for",
+    "Testing the piece with readers outside the newsroom to see what they conclude without being told",
+    "Reviewing how other outlets have visualized the same crisis, and where their framing became an argument",
+    "Testing near-complete form across multiple browsers and systems to ensure maximum compatibility"
+  ]
+},
+ {
+  "projectDescription": "Developing a new identity system for a non-profit which focuses on cycling and urban space in Toronto",
+  "prompts": [
+    "Riding around the city and photographing the signage and street conditions along the way",
+    "Interviewing staff and volunteers about who they are trying to persuade — riders, drivers, or councillors",
+    "Auditing the organization's existing materials to see which marks people actually recognize",
+    "Comparing the identities of transit agencies, municipal wayfinding, and other advocacy groups working on the same topic in different cities",
+    "Reading on the politics of street space to decide whether the identity should read as civic or oppositional",
+    "Testing marks at the sizes they'll actually appear — a jersey, a lawn sign, a bike frame decal, a petition header",
+    "Reviewing historic and contemproary brand guideline manuals for inspiration"
+  ]
+},
+{
+  "projectDescription": "Collecting materials and developing a web-archive of design ephemera related to the mid-90s DIY screamo",
+  "prompts": [
+    "Photographing show flyers, 7\" sleeves, and zines from a collector's basement",
+    "Emailing people who ran labels and distros to ask what they still have and whether it can be scanned",
+    "Looking at collected materials to determine categories, time ranges, and regions to use as dynamic content filters",
+    "Reading on the politics of the archive to decide who has standing to consent to any of this being public",
+    "Surveying existing web-archives of subcultural material to see what their metadata schemas assume",
+    "Testing the site's browse structure with people from the scene to see whether the categories match how they remember it",
+    "Asking AI about which Content Management System is best to effectively run the database for the archived materials"
+  ]
+},
+{
+  "projectDescription": "Writing an article about the history of early interface design",
+  "prompts": [
+    "Reading the original technical reports and manuals rather than the histories written about them",
+    "Watching archived the demo footage and screen recordings that survive, and noting what didn't get recorded",
+    "Emulating the software to see how it actually behaved, rather than describing it from screenshots",
+    "Reading on the historiography of technology to decide whether to write invention or accumulation",
+    "Tracing who the standard account credits and who was doing the work it credits them for",
+    "Deciding what images the argument requires, and whether they can be reproduced",
+    "Reading other articles in the proposed publication to get a sense of the writing style",
+    "Interviewing older computer users to get a sense of the usage and problems of various interfaces"
+  ]
+}, 
+{
+  "projectDescription": "Working with a citizen science organization to develop a user-friendly \"DIY Water Quality Monitoring Kit\"",
+  "prompts": [
+    "Running the existing testing protocol yourself, at a real site, to find where it breaks down",
+    "Interviewing volunteers about what they gave up on and why they stopped submitting readings",
+    "Researching the parameters being measured and what a reading can and cannot establish",
+    "Meeting with the organization's scientists to learn which steps are negotiable and which invalidate the data",
+    "Prototyping the instruction sheet in the field, wet-handed, in bad light",
+    "Reading on the politics of environmental evidence to decide who this data has to convince",
+    "Sourcing and pricing components to see what the kit costs at fifty units versus five hundred",
+    "Testing the kit with someone who has never done this before, and watching without helping"
+  ]
+}
+]
+

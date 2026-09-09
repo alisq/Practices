@@ -1,23 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
 import './App.css';
+import content from './content.json';
 
 const STORAGE_KEY = 'research-process-map-v1';
+const DATASET_KEY = 'research-process-selected-dataset-v1';
 const STUDENT_NAMES_KEY = 'research-process-student-names-v1';
 
-const promptCards = [
-  
-  'Scanning images of old type specimens at a physical archive',
-  'Sharing a beta version of the font with designer friends to test',
-  'Surveying current type foundries online for similar typefaces',
-  'Exploring online archives for inspiration',
-  'Reading Designing Type Revivals to decide how much of the original ink-on-paper artifact to carry into the digital version',
-  'Watching tutorials on specific features in Glyphs',
-  'Asking Claude about the history of the original typeface, its foundry, and its designer',
-  'Meeting with instructor and/or archivist to find examples of the original typeface in use',
-];
+const datasets = Array.isArray(content) ? content : [content];
 
-const createCards = () => (
-  promptCards.map((prompt, index) => ({
+const createCards = (datasetIndex = 0) => (
+  (datasets[datasetIndex]?.prompts || []).map((prompt, index) => ({
     id: index,
     prompt,
     commentary: '',
@@ -26,16 +18,29 @@ const createCards = () => (
 );
 
 const getSpectrumColor = (position) => {
-  const y = Number.isFinite(position?.y) ? position.y : 1;
+  const y = Number.isFinite(position?.y) ? position.y : 0.5;
   const hue = 199 + (59 - 199) * Math.max(0, Math.min(1, y));
   return `hsl(${hue} 100% 50%)`;
 };
 
-const loadCards = () => {
-  const defaults = createCards();
+const loadDatasetIndex = () => {
+  const params = new URLSearchParams(window.location.search);
+  if (params.has('proj')) {
+    const urlIndex = Number(params.get('proj'));
+    if (Number.isInteger(urlIndex) && datasets[urlIndex]) return urlIndex;
+  }
+
+  const savedIndex = Number(localStorage.getItem(DATASET_KEY));
+  return Number.isInteger(savedIndex) && datasets[savedIndex] ? savedIndex : 0;
+};
+
+const loadCards = (datasetIndex = 0) => {
+  const defaults = createCards(datasetIndex);
 
   try {
-    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    const projectStorage = localStorage.getItem(`${STORAGE_KEY}-${datasetIndex}`);
+    const legacyStorage = datasetIndex === 0 ? localStorage.getItem(STORAGE_KEY) : null;
+    const saved = JSON.parse(projectStorage || legacyStorage);
     if (!Array.isArray(saved)) return defaults;
 
     return defaults.map((card) => {
@@ -61,7 +66,8 @@ const loadCards = () => {
 
 function App() {
   const timelineRef = useRef(null);
-  const [cards, setCards] = useState(loadCards);
+  const [selectedDataset, setSelectedDataset] = useState(loadDatasetIndex);
+  const [cards, setCards] = useState(() => loadCards(selectedDataset));
   const [dragging, setDragging] = useState(null);
   const [studentNames, setStudentNames] = useState(() => (
     localStorage.getItem(STUDENT_NAMES_KEY) || 'Student names'
@@ -69,11 +75,18 @@ function App() {
 
   useEffect(() => {
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(cards));
+      localStorage.setItem(`${STORAGE_KEY}-${selectedDataset}`, JSON.stringify(cards));
     } catch {
       // The map still works when browser storage is unavailable.
     }
-  }, [cards]);
+  }, [cards, selectedDataset]);
+
+  useEffect(() => {
+    localStorage.setItem(DATASET_KEY, selectedDataset);
+    const url = new URL(window.location.href);
+    url.searchParams.set('proj', selectedDataset);
+    window.history.replaceState({}, '', url);
+  }, [selectedDataset]);
 
   useEffect(() => {
     localStorage.setItem(STUDENT_NAMES_KEY, studentNames);
@@ -85,7 +98,7 @@ function App() {
       id: card.id,
       x: event.clientX,
       y: event.clientY,
-      mapY: card.position?.y ?? 1,
+      mapY: card.position?.y ?? 0.5,
       origin: card.position,
     });
   };
@@ -95,7 +108,7 @@ function App() {
     const timeline = timelineRef.current?.getBoundingClientRect();
     const mapY = timeline
       ? Math.max(0, Math.min(1, (event.clientY - timeline.top) / timeline.height))
-      : 1;
+      : 0.5;
 
     setDragging((current) => current ? {
       ...current,
@@ -139,6 +152,13 @@ function App() {
     setStudentNames('Student names');
   };
 
+  const selectDataset = (event) => {
+    const datasetIndex = Number(event.target.value);
+    setSelectedDataset(datasetIndex);
+    setCards(loadCards(datasetIndex));
+    setDragging(null);
+  };
+
   const updateCommentary = (id, commentary) => {
     setCards((current) => current.map((card) => (
       card.id === id ? { ...card, commentary } : card
@@ -151,10 +171,35 @@ function App() {
     element.style.height = `${element.scrollHeight}px`;
   };
 
+  const cardOrder = [...cards].sort((a, b) => {
+    if (a.position && b.position) {
+      return a.position.x - b.position.x || a.id - b.id;
+    }
+    if (a.position) return -1;
+    if (b.position) return 1;
+    return a.id - b.id;
+  });
+
+  const getCardNumber = (id) => (
+    String(cardOrder.findIndex((card) => card.id === id) + 1).padStart(2, '0')
+  );
+
   return (
     <main className="site-shell">
       <header className="topbar">
-        <p className="instruction"><span>Drag</span> prompts onto the timeline</p>
+        <div className="topbar-left">
+          <p className="instruction"><span>Drag</span> prompts onto the timeline</p>
+          <label className="data-picker">
+            <span>Get data</span>
+            <select value={selectedDataset} onChange={selectDataset}>
+              {datasets.map((dataset, index) => (
+                <option value={index} key={`${index}-${dataset.projectDescription}`}>
+                  {String(index + 1).padStart(2, '0')} — {dataset.projectDescription}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
         <div
           className="student-names"
           contentEditable
@@ -182,7 +227,7 @@ function App() {
       </header>
 
       <h1 className="project-description">
-        Designing a “revival typeface” based on a previously undigitized font.
+        {datasets[selectedDataset]?.projectDescription}
       </h1>
 
       <aside className="prompt-deck" aria-label="Research prompt cards">
@@ -212,6 +257,7 @@ function App() {
                   zIndex: 40 + stackIndex,
                 }}
               >
+                <span className="prompt-number">{getCardNumber(card.id)}</span>
                 <strong>{card.prompt}</strong>
                 <i aria-hidden="true">↗</i>
                 <textarea
@@ -266,6 +312,7 @@ function App() {
                 backgroundColor: getSpectrumColor(card.position),
               }}
             >
+              <span className="prompt-number">{getCardNumber(card.id)}</span>
               <strong>{card.prompt}</strong>
               <i aria-hidden="true">↗</i>
               <textarea
