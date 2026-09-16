@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import './App.css';
+import { Link } from 'react-router-dom';
+import './ResearchMap.css';
 import content from './content.json';
 
 const STORAGE_KEY = 'research-process-map-v1';
@@ -64,7 +65,7 @@ const loadCards = (datasetIndex = 0) => {
   }
 };
 
-function App() {
+function ResearchMap() {
   const timelineRef = useRef(null);
   const [selectedDataset, setSelectedDataset] = useState(loadDatasetIndex);
   const [cards, setCards] = useState(() => loadCards(selectedDataset));
@@ -72,6 +73,24 @@ function App() {
   const [studentNames, setStudentNames] = useState(() => (
     localStorage.getItem(STUDENT_NAMES_KEY) || 'Student names'
   ));
+
+  useEffect(() => {
+    document.title = 'Practice 01: Research Process Timeline';
+  }, []);
+
+  // Stylesheets are bundled globally, so the print rules for this board have to
+  // be tied to the mounted route or they leak into the other practices.
+  useEffect(() => {
+    const printRules = document.createElement('style');
+    printRules.textContent = '@page { size: landscape; margin: 0; } @media print { html { height: 100%; overflow: hidden; } }';
+    document.body.classList.add('practice-01');
+    document.head.appendChild(printRules);
+
+    return () => {
+      document.body.classList.remove('practice-01');
+      printRules.remove();
+    };
+  }, []);
 
   useEffect(() => {
     try {
@@ -188,6 +207,7 @@ function App() {
     <main className="site-shell">
       <header className="topbar">
         <div className="topbar-left">
+          <Link to="/" className="home-link">Practices</Link>
           <label className="data-picker" aria-label="Select project">
             <span>Project Description:</span>
             <select value={selectedDataset} onChange={selectDataset}>
@@ -333,4 +353,4 @@ function App() {
   );
 }
 
-export default App;
+export default ResearchMap;

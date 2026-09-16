@@ -1,5 +1,5 @@
 {
-  "name": "01",
+  "name": "practices",
   "version": "0.1.0",
   "private": true,
   "homepage": "https://alisq.github.io/Practices",
@@ -10,6 +10,7 @@
     "@testing-library/user-event": "^13.5.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
+    "react-router-dom": "^6.30.6",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
@@ -18,7 +19,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy": "npm run build && rm -rf ../docs && mv build ../docs"
+    "predeploy": "npm run build && rm -rf docs && mv build docs && cp docs/index.html docs/404.html"
   },
   "eslintConfig": {
     "extends": [

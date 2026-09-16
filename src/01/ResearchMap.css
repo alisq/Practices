@@ -1,26 +1,3 @@
-:root {
-  --ink: #151515;
-  --paper: #f1eee8;
-  --line: rgba(21, 21, 21, 0.3);
-  --font-serif: Starling, serif;
-  --font-sans: Lettera, sans-serif;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-html,
-body,
-#root {
-  height: 100%;
-}
-
-button,
-a {
-  color: inherit;
-}
-
 .site-shell {
   position: relative;
   height: 100%;
@@ -52,6 +29,14 @@ a {
   display: flex;
   align-items: center;
   gap: 1rem;
+}
+
+.home-link {
+  color: inherit;
+  font: 700 0.62rem/1 var(--font-sans);
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  text-transform: uppercase;
 }
 
 .data-picker {
@@ -404,14 +389,8 @@ a {
 }
 
 @media print {
-  @page {
-    size: landscape;
-    margin: 0;
-  }
-
-  html,
-  body,
-  #root {
+  body.practice-01,
+  body.practice-01 #root {
     width: 100%;
     height: 100%;
     margin: 0;
@@ -447,7 +426,8 @@ a {
 
   .export-button,
   .reset-button,
-  .data-picker {
+  .data-picker,
+  .home-link {
     display: none;
   }
 

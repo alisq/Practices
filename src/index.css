@@ -1,0 +1,35 @@
+:root {
+  --ink: #151515;
+  --paper: #f1eee8;
+  --line: rgba(21, 21, 21, 0.3);
+  --font-serif: Starling, serif;
+  --font-sans: Lettera, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior: none;
+}
+
+body,
+button {
+  font-synthesis: none;
+}
+
+button,
+a {
+  color: inherit;
+}
