@@ -1,10 +1,10 @@
 .mettle-shell {
   color: var(--ink);
   background: var(--paper);
-  background-image:
+  /* background-image:
     linear-gradient(rgba(21, 21, 21, 0.045) 1px, transparent 1px),
     linear-gradient(90deg, rgba(21, 21, 21, 0.045) 1px, transparent 1px);
-  background-size: 2rem 2rem;
+  background-size: 2rem 2rem; */
 }
 
 .mettle-topbar {
