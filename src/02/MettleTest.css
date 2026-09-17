@@ -185,7 +185,7 @@
   color: var(--ink);
   background: #fff;
   box-shadow: 0.28rem 0.3rem 0 var(--ink);
-  font: 400 0.9rem/1.5 var(--font-sans);
+  font: 400 0.9rem/1.5 var(--font-serif);
   overflow: hidden;
   resize: none;
 }
@@ -222,7 +222,7 @@
   color: var(--ink);
   background: #fff;
   box-shadow: 0.28rem 0.3rem 0 var(--ink);
-  font: 400 1rem/1.2 var(--font-sans);
+  font: 400 1rem/1.2 var(--font-serif);
   cursor: pointer;
 }
 
@@ -264,7 +264,7 @@
   border-radius: 0;
   color: var(--ink);
   background: #fff;
-  font: 400 0.9rem/1.2 var(--font-sans);
+  font: 400 0.9rem/1.2 var(--font-serif);
 }
 
 .entry-list.is-large input {
@@ -369,7 +369,7 @@
   border: 0;
   color: var(--ink);
   background: transparent;
-  font: 400 0.85rem/1.5 var(--font-sans);
+  font: 400 0.85rem/1.5 var(--font-serif);
   overflow: hidden;
   resize: none;
 }
@@ -499,7 +499,7 @@
   .print-value {
     display: block;
     margin: 0;
-    font: 400 0.85rem/1.5 var(--font-sans);
+    font: 400 0.85rem/1.5 var(--font-serif);
     white-space: pre-wrap;
   }
 
