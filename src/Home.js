@@ -15,6 +15,12 @@ const practices = [
     title: 'Research Question Mettle Testing',
     description: 'Work through seven timed sections, one gate at a time.',
   },
+  {
+    path: '/03',
+    number: '03',
+    title: 'Artifact Annotation',
+    description: 'Choose an artifact, then look closely and work through form and context.',
+  },
 ];
 
 function Home() {

@@ -1,0 +1,571 @@
+.annot-shell {
+  position: relative;
+  height: 100%;
+  color: var(--ink);
+  background: var(--paper);
+  
+  overflow: auto;
+}
+
+.annot-shell.is-selected {
+  overflow: hidden;
+}
+
+.annot-topbar {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.65rem 3rem;
+  border-bottom: 1px solid var(--line);
+  background: var(--paper);
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.annot-home-link {
+  color: inherit;
+  font: 700 0.62rem/1 var(--font-sans);
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.annot-topbar h1 {
+  margin: 0;
+  font: 700 0.72rem/1 var(--font-sans);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.export-pdf,
+.reset-button {
+  padding: 0.65rem 0.9rem;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  font: 700 0.65rem/1 var(--font-sans);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.export-pdf {
+  color: var(--paper);
+  background: var(--ink);
+}
+
+.reset-button {
+  color: var(--ink);
+  background: transparent;
+}
+
+.export-pdf:hover {
+  color: var(--ink);
+  background: transparent;
+}
+
+.reset-button:hover {
+  color: var(--paper);
+  background: var(--ink);
+}
+
+.annot-picker {
+  display: grid;
+  align-content: start;
+  gap: 2rem;
+  min-height: 100%;
+  padding: 7rem 3rem 3rem;
+}
+
+.annot-picker-copy h2,
+.annot-kicker {
+  margin: 0;
+}
+
+.annot-kicker {
+  margin-bottom: 0.65rem;
+  font: 700 0.62rem/1 var(--font-sans);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.annot-picker-copy h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(2.4rem, 5vw, 4.5rem);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+}
+
+.annot-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-auto-rows: 8px;
+  align-items: start;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.annot-grid li {
+  min-width: 0;
+}
+
+.annot-tile {
+  display: grid;
+  width: 100%;
+  padding: 0;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  color: var(--ink);
+  background: #fff;
+  box-shadow: 0.28rem 0.3rem 0 var(--ink);
+  cursor: pointer;
+  text-align: left;
+}
+
+/* Full artifacts, never cropped: the column sets the width, the image sets
+   its own height. */
+.annot-tile img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-bottom: 1px solid var(--ink);
+}
+
+.annot-tile-label {
+  display: grid;
+  grid-template-columns: 1.6rem 1fr;
+  gap: 0.35rem;
+  padding: 0.7rem 0.75rem;
+  font: 700 0.62rem/1.35 var(--font-sans);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.annot-tile-label em {
+  font-style: normal;
+  opacity: 0.55;
+}
+
+.annot-missing {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  padding: 1rem;
+  border-bottom: 1px solid var(--ink);
+  background: repeating-linear-gradient(
+    -45deg,
+    rgba(21, 21, 21, 0.06) 0,
+    rgba(21, 21, 21, 0.06) 6px,
+    transparent 6px,
+    transparent 14px
+  );
+  font: 400 0.7rem/1.4 var(--font-sans);
+  letter-spacing: 0;
+  text-align: center;
+  text-transform: none;
+  overflow-wrap: anywhere;
+}
+
+.annot-tile:hover,
+.annot-tile:focus-visible {
+  outline: none;
+  background: hsl(59 100% 50%);
+}
+
+/* The chosen artifact holds the left third; the parts scroll in the right two. */
+.annot-analyze {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  align-items: start;
+  gap: 2.5rem;
+  height: 100%;
+  padding: 6.25rem 3rem 2.5rem;
+}
+
+.annot-parts {
+  display: grid;
+  align-content: start;
+  gap: 2.5rem;
+  height: 100%;
+  min-height: 0;
+  padding-right: 0.5rem;
+  overflow-y: auto;
+}
+
+.annot-part {
+  display: grid;
+  align-content: start;
+  gap: 0.75rem;
+}
+
+.annot-part:not(.is-active) {
+  display: none;
+}
+
+.annot-part-label {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin: 0;
+  font: 700 0.72rem/1 var(--font-sans);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.annot-part-number {
+  padding: 0.3rem 0.45rem;
+  border: 1px solid var(--ink);
+}
+
+.annot-part-prompt {
+  max-width: 44rem;
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+.annot-editor {
+  width: 100%;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  background: #fff;
+  box-shadow: 0.28rem 0.3rem 0 var(--ink);
+}
+
+.annot-editor-toolbar {
+  display: flex;
+  align-items: stretch;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--ink);
+  background: var(--paper);
+}
+
+.annot-editor-tool,
+.annot-editor-format {
+  min-height: 2.2rem;
+  padding: 0.55rem 0.7rem;
+  border: 0;
+  border-right: 1px solid var(--ink);
+  border-radius: 0;
+  color: var(--ink);
+  background: transparent;
+  font: 700 0.6rem/1 var(--font-sans);
+  letter-spacing: 0.04em;
+  cursor: pointer;
+}
+
+.annot-editor-tool:hover,
+.annot-editor-tool:focus-visible,
+.annot-editor-format:hover,
+.annot-editor-format:focus-visible {
+  outline: none;
+  background: hsl(59 100% 50%);
+}
+
+.annot-editor-surface {
+  width: 100%;
+  min-height: 14rem;
+  padding: 0.85rem 0.9rem;
+  outline: none;
+  font: 400 1.2rem/1.45 var(--font-serif);
+  overflow-wrap: anywhere;
+}
+
+.annot-editor-surface:focus {
+  background: hsl(59 100% 50%);
+}
+
+.annot-editor-surface:empty::before {
+  color: rgba(21, 21, 21, 0.5);
+  content: attr(data-placeholder);
+  pointer-events: none;
+}
+
+.annot-editor-surface p,
+.annot-editor-surface h3,
+.annot-editor-surface blockquote,
+.annot-editor-surface ul,
+.annot-editor-surface ol,
+.print-value p,
+.print-value h3,
+.print-value blockquote,
+.print-value ul,
+.print-value ol {
+  margin-top: 0;
+  margin-bottom: 0.75em;
+}
+
+.annot-editor-surface h3,
+.print-value h3 {
+  font-size: 1.35em;
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+.annot-editor-surface blockquote,
+.print-value blockquote {
+  margin-left: 0;
+  padding-left: 0.85rem;
+  border-left: 1px solid var(--ink);
+}
+
+.annot-editor-surface a,
+.print-value a {
+  text-underline-offset: 0.18em;
+}
+
+.annot-part-foot {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 0.25rem;
+}
+
+.annot-next,
+.annot-previous {
+  padding: 0.85rem 1.15rem;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  font: 700 0.65rem/1 var(--font-sans);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.annot-next {
+  color: var(--paper);
+  background: var(--ink);
+}
+
+.annot-previous {
+  color: var(--ink);
+  background: transparent;
+}
+
+.annot-next:hover {
+  color: var(--ink);
+  background: transparent;
+}
+
+.annot-previous:hover {
+  color: var(--paper);
+  background: var(--ink);
+}
+
+.annot-chosen {
+  position: sticky;
+  top: 0;
+  display: grid;
+  align-content: start;
+  justify-items: stretch;
+  gap: 0.75rem;
+  margin: 0;
+  min-width: 0;
+  min-height: 0;
+}
+
+.annot-chosen > a {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.annot-chosen img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.annot-chosen > a:hover,
+.annot-chosen > a:focus-visible {
+  outline: 1px solid var(--ink);
+  outline-offset: 0.25rem;
+}
+
+.annot-chosen figcaption {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  font: 700 0.62rem/1.35 var(--font-sans);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.annot-caption-number {
+  opacity: 0.55;
+}
+
+.annot-chosen figcaption a {
+  text-underline-offset: 0.2em;
+}
+
+.annot-chosen .annot-missing {
+  aspect-ratio: 4 / 5;
+  border-bottom: 0;
+  font-size: 0.85rem;
+}
+
+.print-value {
+  display: none;
+}
+
+@media (max-width: 980px) {
+  .annot-shell.is-selected {
+    overflow: auto;
+  }
+
+  .annot-topbar,
+  .annot-picker,
+  .annot-analyze {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .annot-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .annot-analyze {
+    grid-template-columns: 1fr;
+    height: auto;
+    gap: 1.75rem;
+    padding-top: 5.5rem;
+  }
+
+  .annot-chosen {
+    position: static;
+  }
+
+  .annot-parts {
+    height: auto;
+    padding-right: 0;
+    overflow: visible;
+  }
+
+}
+
+@media (max-width: 520px) {
+  .annot-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media print {
+  body.practice-03,
+  body.practice-03 #root {
+    height: auto;
+    overflow: visible;
+  }
+
+  .annot-shell,
+  .annot-shell.is-selected {
+    height: auto;
+    overflow: visible;
+    background: #fff;
+    background-image: none;
+  }
+
+  .annot-topbar {
+    position: static;
+    height: auto;
+    justify-content: flex-start;
+    padding: 0 0 0.5rem;
+    border-bottom: 1px solid var(--ink);
+    background: transparent;
+  }
+
+  body.practice-03 .annot-home-link,
+  body.practice-03 .header-actions,
+  body.practice-03 .annot-editor {
+    display: none;
+  }
+
+  .annot-picker {
+    padding: 0;
+  }
+
+  .annot-analyze {
+    display: block;
+    height: auto;
+    padding: 0.75rem 0 0;
+  }
+
+  .annot-parts {
+    display: block;
+    height: auto;
+    padding: 0;
+    overflow: visible;
+  }
+
+  .annot-part,
+  .annot-chosen {
+    position: static;
+    width: 100%;
+    margin-bottom: 1.25rem;
+    break-inside: avoid;
+  }
+
+  body.practice-03 .annot-part {
+    display: grid;
+  }
+
+  body.practice-03 .annot-part-prompt {
+    display: none;
+  }
+
+  .annot-chosen > a {
+    max-height: none;
+    box-shadow: none;
+    cursor: default;
+  }
+
+  .annot-chosen img {
+    max-height: 42vh;
+    margin: 0 auto;
+  }
+
+  body.practice-03 .annot-part-foot {
+    display: none;
+  }
+
+  body.practice-03 .print-value {
+    display: block;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-shadow: none;
+    font: 400 0.95rem/1.45 var(--font-serif);
+  }
+
+  body.practice-03 .annot-part.is-blank {
+    display: none;
+  }
+}
