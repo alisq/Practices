@@ -381,7 +381,7 @@ const parts = [
     key: 'contextual',
     number: '06',
     title: 'Contextual analysis',
-    prompt: 'Using the methods and categories mentioned in today’s lecture, speculate on audience, era, influence, materiality and other contextual clues you can glean from the artifact.',
+    prompt: 'Speculate on the context of the piece. At this point I want you to deduce from image of the piece and not google just yet.',
     placeholder: 'Audience, era, influence, materiality…',
   },
   {
