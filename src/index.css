@@ -1,8 +1,8 @@
 :root {
-  --ink: #151515;
-  --paper: #f1eee8;
-  
-  --line: rgba(21, 21, 21, 0.3);
+  --ink: #F8BA00;
+  --paper: #000;
+  --line: rgba(248, 186, 0, 0.3);
+  --muted: rgba(248, 186, 0, 0.5);
   --font-serif: Starling, serif;
   --font-sans: Lettera, sans-serif;
 }
@@ -17,8 +17,14 @@ body,
   height: 100%;
 }
 
+html {
+  color-scheme: dark;
+}
+
 body {
   margin: 0;
+  color: var(--ink);
+  background: var(--paper);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -33,4 +39,22 @@ button {
 button,
 a {
   color: inherit;
+}
+
+@media print {
+  :root {
+    --ink: #151515;
+    --paper: #fff;
+    --line: rgba(21, 21, 21, 0.3);
+    --muted: rgba(21, 21, 21, 0.5);
+  }
+
+  html {
+    color-scheme: light;
+  }
+
+  body {
+    color: var(--ink);
+    background: #fff;
+  }
 }

@@ -21,6 +21,12 @@ const practices = [
     title: 'Artifact Annotation',
     description: 'Choose an artifact, then look closely and work through form and context.',
   },
+  {
+    path: '/04',
+    number: '04',
+    title: 'Text Analysis',
+    description: 'Read an essay, a peer-reviewed paper, and a poem closely, then question, place, and rewrite them.',
+  },
 ];
 
 function Home() {
@@ -41,7 +47,7 @@ function Home() {
               <span className="practice-number">{practice.number}</span>
               <span className="practice-copy">
                 <strong>{practice.title}</strong>
-                <em>{practice.description}</em>
+                {practice.description && <em>{practice.description}</em>}
               </span>
             </Link>
           </li>

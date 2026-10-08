@@ -3,6 +3,7 @@ import Home from './Home';
 import ResearchMap from './01/ResearchMap';
 import MettleTest from './02/MettleTest';
 import ArtifactAnnotation from './03/ArtifactAnnotation';
+import TextAnalysis from './04/TextAnalysis';
 
 function App() {
   const basename = process.env.NODE_ENV === 'production' ? process.env.PUBLIC_URL : undefined;
@@ -17,6 +18,7 @@ function App() {
         <Route path="/01" element={<ResearchMap />} />
         <Route path="/02" element={<MettleTest />} />
         <Route path="/03" element={<ArtifactAnnotation />} />
+        <Route path="/04" element={<TextAnalysis />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>

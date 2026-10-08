@@ -1,0 +1,131 @@
+[
+  {
+    "id": "wild",
+    "title": "A thinkpiece on design",
+    "author": "Lorraine Wild",
+    "source": {
+      "title": "Macrame of Resistance",
+      "url": "https://www.emigre.com/assets/file/pdfMagazine/Emigre47Macrame.pdf",
+      "publication": "Emigre Magazine #47"
+    },
+    "passage": [
+      "\"...In arguing for a new design “basics,” I claimed that educators needed to expand their assignments beyond the visual. The missing elements, if we wanted young designers to become “conceptualists,” were related to language. This bias against language in graphic design teaching is part of the DNA that we still carry from the influence of the Bauhaus, which looked for universal images to supersede verbal communication. Though I tried to not deny the importance of visual training, I had to admit, practically, that if you wanted to graduate in four years, something had to give.",
+      "[...]",
+      "I now think that my conclusion, like the others I have described, needs challenging. Why? Because it’s incomplete. Because most of the prescriptions for the “conceptual” in graphic design define it as verbal, falling in line with most of the language-based, rationalist, linear conventions of academic and business culture. The visual, to some design educators, is a remnant of the “old” graphic design, before we got postmodernism and theory. Disdain for the visual also falls in line with a stubborn theme in modern art education, post-Duchamp and post-Moholy-Nagy, (who, of course, said that any designer’s idea that could not be described over the phone was not an idea at all). This theme fears that pesky old-fashioned techniques or traditions of visual training might cramp the spontaneous creativity of the young artist/designer. It’s a common attitude in contemporary art education that meaning has priority over the techniques used to convey it....\""
+    ],
+    "steps": [
+      {
+        "key": "read",
+        "type": "read",
+        "title": "Read through",
+        "prompt": "Take 5 minutes to silently and carefully read the paragraph. Maybe elect someone from your group to read it aloud. Metabolize."
+      },
+      {
+        "key": "thesis",
+        "type": "text",
+        "title": "Speculate on the thesis",
+        "prompt": "In 1–2 sentences, what do you think the author is trying to claim in this article?",
+        "placeholder": "The author is claiming…"
+      },
+      {
+        "key": "against",
+        "type": "text",
+        "title": "Argument against",
+        "prompt": "What do you think the author is arguing against, even if they don’t name it?",
+        "placeholder": "She is pushing back on…"
+      },
+      {
+        "key": "evidence",
+        "type": "text",
+        "title": "What kinds of evidence?",
+        "prompt": "Describe the evidence provided and what kind of evidence it is (personal experience, named examples, statistical data, etc.).",
+        "placeholder": "Evidence, and what kind it is…"
+      },
+      {
+        "key": "stance",
+        "type": "stances",
+        "title": "Do you agree?",
+        "prompt": "Each person takes a stance (agree, disagree, agree with conditions) and finds one sentence to defend it with. Groups report their split."
+      }
+    ]
+  },
+  {
+    "id": "do-be-feel",
+    "title": "Peer Reviewed Text",
+    "textRight": true,
+    "passage": [
+      "“The first stage for Motivational Modelling is running a Do/Be/Feel goal generation session. Do/Be/Feel goal generation is a brainstorming method where key stakeholders of the project, such as key project members, produce four lists. The four lists are labeled as follows: \"Do (what should the solution do?),\" \"Be (how should the solution be?),\" \"Feel (how should the stakeholders feel when interacting with the solution?)\" and \"Who (has a stake in the solution?),\" The brainstorming aims to generate ideas for the stakeholders along with the functional, quality, and emotional goals/requirements of the system. Do/Be/Feel goal generation is an efficient, sophisticated, interactive, and adaptable process of capturing diverse ideas from a group of people. Typically, conducting a Do/Be/Feel session takes up to 30 minutes, though the duration can vary according to circumstances (such as topic and size of group).",
+      "[…]",
+      "This paper describes a case study where we trialed Motivational Modelling with graphic designers who were creating brandmarks. Seventy-nine novice graphic designers, out of a group of 150 designers, chose to trial the method on real-world industry branding briefs in a university context. We were interested to see if and how the method influenced brainstorming in branding, as well as the overall benefits and limitations of the new process. We discovered that the process led to novel diagrams displaying brand values and a branded story derived from the Do/Be/Feel goal generation sessions. Each designer formed their own unique Do/Be/Feel branded story diagram to match the intent of their branding project. We found that the goal generation sessions had a positive effect on the quality of brand values and the brandmark design. For our case study, applying and adopting methods developed by software engineering added efficiency and focus, enhanced creativity, showing potential for influencing the strategic direction of how graphic designers can design brands.”"
+    ],
+    "author": "Simone Taffe et al",
+    "citation": {
+      "title": "“Do/Be/Feel and Motivational Modelling: Applying a new brainstorming process in the design of brandmarks”",
+      "details": "Visible Language. Cincinnati Vol. 56, Iss. 1, (Apr 2022): 46–71."
+    },
+    "steps": [
+      {
+        "key": "read",
+        "type": "read",
+        "title": "Read through",
+        "prompt": "Once again, take 5 minutes to silently and carefully read the paragraph. Maybe elect someone from your group to read it aloud. Metabolize."
+      },
+      {
+        "key": "terms",
+        "type": "terms",
+        "title": "Terminology",
+        "prompt": "What terms were you unfamiliar with? List them out and take a moment to find their definitions."
+      },
+      {
+        "key": "outlet",
+        "type": "text",
+        "title": "Speculate on the outlet",
+        "prompt": "What kind of outlet do you think this article appeared in?",
+        "placeholder": "A journal, a magazine, a blog… and why you think so"
+      }
+    ]
+  },
+  {
+    "id": "pleasures",
+    "title": "Poetic Text",
+    "poem": true,
+    "passage": [
+      "First look from morning’s window",
+      "The rediscovered book",
+      "Fascinated faces",
+      "Snow, the change of the seasons",
+      "The newspaper",
+      "The dog",
+      "Dialectics",
+      "Showering, swimming",
+      "Old music",
+      "Comfortable shoes",
+      "Comprehension",
+      "New music",
+      "Writing, planting",
+      "Traveling",
+      "Singing",
+      "Being friendly"
+    ],
+    "author": "Bertolt Brecht",
+    "citation": {
+      "title": "“Pleasures”"
+    },
+    "steps": [
+      {
+        "key": "read",
+        "type": "read",
+        "title": "Read",
+        "prompt": "Slowly, carefully, and collectively read the poem. Take a moment to reflect."
+      },
+      {
+        "key": "rewrite",
+        "type": "text",
+        "title": "Rewrite the poem",
+        "prompt": "Rewrite “Pleasures” by Bertolt Brecht, as individuals or as a collective.",
+        "placeholder": "Your pleasures, one per line… Extra point for those who email me a performance of your rendition(s).",
+        "tall": true
+      }
+    ]
+  }
+]

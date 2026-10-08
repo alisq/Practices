@@ -66,8 +66,8 @@
 }
 
 .export-pdf {
-  color: var(--paper);
-  background: var(--ink);
+  color: var(--ink);
+  background: var(--paper);
 }
 
 .reset-button {
@@ -76,13 +76,13 @@
 }
 
 .export-pdf:hover {
-  color: var(--ink);
-  background: transparent;
+  color: #000;
+  background: hsl(59 100% 50%);
 }
 
 .reset-button:hover {
-  color: var(--paper);
-  background: var(--ink);
+  color: #000;
+  background: hsl(59 100% 50%);
 }
 
 .annot-picker {
@@ -135,7 +135,7 @@
   border: 1px solid var(--ink);
   border-radius: 0;
   color: var(--ink);
-  background: #fff;
+  background: var(--paper);
   box-shadow: 0.28rem 0.3rem 0 var(--ink);
   cursor: pointer;
   text-align: left;
@@ -174,8 +174,8 @@
   border-bottom: 1px solid var(--ink);
   background: repeating-linear-gradient(
     -45deg,
-    rgba(21, 21, 21, 0.06) 0,
-    rgba(21, 21, 21, 0.06) 6px,
+    rgba(248, 186, 0, 0.16) 0,
+    rgba(248, 186, 0, 0.16) 6px,
     transparent 6px,
     transparent 14px
   );
@@ -189,6 +189,7 @@
 .annot-tile:hover,
 .annot-tile:focus-visible {
   outline: none;
+  color: #000;
   background: hsl(59 100% 50%);
 }
 
@@ -250,7 +251,7 @@
   width: 100%;
   border: 1px solid var(--ink);
   color: var(--ink);
-  background: #fff;
+  background: var(--paper);
   box-shadow: 0.28rem 0.3rem 0 var(--ink);
 }
 
@@ -281,6 +282,7 @@
 .annot-editor-format:hover,
 .annot-editor-format:focus-visible {
   outline: none;
+  color: #000;
   background: hsl(59 100% 50%);
 }
 
@@ -294,11 +296,12 @@
 }
 
 .annot-editor-surface:focus {
+  color: #000;
   background: hsl(59 100% 50%);
 }
 
 .annot-editor-surface:empty::before {
-  color: rgba(21, 21, 21, 0.5);
+  color: var(--muted);
   content: attr(data-placeholder);
   pointer-events: none;
 }
@@ -355,8 +358,8 @@
 }
 
 .annot-next {
-  color: var(--paper);
-  background: var(--ink);
+  color: var(--ink);
+  background: var(--paper);
 }
 
 .annot-previous {
@@ -365,13 +368,13 @@
 }
 
 .annot-next:hover {
-  color: var(--ink);
-  background: transparent;
+  color: #000;
+  background: hsl(59 100% 50%);
 }
 
 .annot-previous:hover {
-  color: var(--paper);
-  background: var(--ink);
+  color: #000;
+  background: hsl(59 100% 50%);
 }
 
 .annot-chosen {

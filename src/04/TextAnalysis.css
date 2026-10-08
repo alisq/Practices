@@ -1,0 +1,498 @@
+body.practice-04 {
+  --ink: #000;
+  --paper: #F8BA00;
+  --line: rgba(0, 0, 0, 0.3);
+  --muted: rgba(0, 0, 0, 0.5);
+  --highlight: hsl(48 100% 70%);
+  color-scheme: light;
+  background: var(--paper);
+}
+
+.text-shell {
+  min-height: 100%;
+  color: var(--ink);
+  background: var(--paper);
+}
+
+.text-topbar {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.65rem 3rem;
+  border-bottom: 1px solid var(--line);
+  background: var(--paper);
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.text-home-link {
+  color: inherit;
+  font: 700 0.62rem/1 var(--font-sans);
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.text-topbar h1 {
+  margin: 0;
+  font: 700 0.72rem/1 var(--font-sans);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.export-pdf {
+  padding: 0.65rem 0.9rem;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  color: var(--ink);
+  background: var(--paper);
+  font: 700 0.65rem/1 var(--font-sans);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.export-pdf:hover,
+.text-next:hover,
+.text-previous:hover,
+.card-list-add:hover {
+  color: var(--paper);
+  background: var(--ink);
+}
+
+.text-note {
+  margin: 0;
+  padding: 6rem 3rem 0;
+  font: 700 0.72rem/1.4 var(--font-sans);
+  letter-spacing: 0.06em;
+}
+
+.text-part {
+  padding: 3rem 3rem 4rem;
+}
+
+.text-part:not(.is-active),
+.text-step:not(.is-active) {
+  display: none;
+}
+
+.text-part-label {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0 0 2.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--ink);
+  font: 700 0.72rem/1 var(--font-sans);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.text-part-label p {
+  display: flex;
+  align-items: baseline;
+  gap: 0.85rem;
+  margin: 0;
+}
+
+.text-part-progress {
+  font-size: 0.62rem;
+}
+
+.text-part-number {
+  padding: 0.3rem 0.45rem;
+  border: 1px solid var(--ink);
+}
+
+.text-part-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: start;
+  gap: 4rem;
+}
+
+.text-part-body.is-text-right .text-passage {
+  order: 2;
+}
+
+/* The passage stays in view so groups can quote from it while they write. */
+.text-passage {
+  position: sticky;
+  top: 6rem;
+  margin: 0;
+}
+
+.text-passage p {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(1.05rem, 1.35vw, 1.3rem);
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+}
+
+.text-passage p + p {
+  text-indent: 2em;
+}
+
+.text-passage cite {
+  display: block;
+  margin-top: 1.25rem;
+  font: 700 0.62rem/1.4 var(--font-sans);
+  font-style: normal;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.text-passage cite::before {
+  content: '— ';
+}
+
+.text-passage cite a {
+  text-underline-offset: 0.2em;
+}
+
+.text-passage cite a:hover {
+  color: var(--paper);
+  background: var(--ink);
+  text-decoration: none;
+}
+
+.text-passage.is-poem p + p,
+.text-passage p.is-elision,
+.text-passage p.is-elision + p {
+  text-indent: 0;
+}
+
+.text-steps {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.text-step {
+  display: grid;
+  gap: 1rem;
+}
+
+.text-step-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 1.25rem;
+}
+
+.text-next,
+.text-previous {
+  padding: 0.85rem 1.15rem;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  color: var(--ink);
+  background: transparent;
+  font: 700 0.65rem/1 var(--font-sans);
+  letter-spacing: 0.06em;
+  text-align: left;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.text-next {
+  margin-left: auto;
+  box-shadow: 0.2rem 0.22rem 0 var(--ink);
+}
+
+.text-step-label {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin: 0;
+  font: 700 0.65rem/1 var(--font-sans);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.text-step-number {
+  padding: 0.25rem 0.4rem;
+  border: 1px solid var(--ink);
+}
+
+.text-step-prompt {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem, 2vw, 2rem);
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+}
+
+.text-step > textarea,
+.entry-card textarea {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  color: var(--ink);
+  background: var(--paper);
+  font: 400 0.9rem/1.5 var(--font-serif);
+  overflow: hidden;
+  resize: none;
+}
+
+.text-step > textarea {
+  min-height: 7rem;
+  padding: 1rem;
+  box-shadow: 0.28rem 0.3rem 0 var(--ink);
+}
+
+.text-step > textarea.is-tall {
+  min-height: 24rem;
+  font-size: 1.05rem;
+}
+
+.text-step > textarea:focus {
+  outline: none;
+  background: var(--highlight);
+}
+
+.text-shell textarea::placeholder,
+.text-shell input::placeholder {
+  color: var(--muted);
+}
+
+.card-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.card-list ol {
+  display: grid;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.entry-card {
+  display: grid;
+  border: 1px solid var(--ink);
+  box-shadow: 0.28rem 0.3rem 0 var(--ink);
+}
+
+.entry-card-head {
+  display: grid;
+  grid-template-columns: 1.75rem 1fr 2rem;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.5rem 0.35rem 0.9rem;
+  border-bottom: 1px solid var(--ink);
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.entry-card-number {
+  font: 700 0.62rem/1 var(--font-sans);
+  letter-spacing: 0.05em;
+}
+
+.entry-card-head input {
+  width: 100%;
+  padding: 0.45rem 0.5rem;
+  border: 0;
+  border-radius: 0;
+  color: var(--ink);
+  background: transparent;
+  font: 400 1.05rem/1.2 var(--font-serif);
+}
+
+.entry-card-head input:focus,
+.entry-card textarea:focus {
+  outline: none;
+  background: var(--highlight);
+}
+
+.entry-card-remove {
+  padding: 0.25rem;
+  border: 0;
+  background: transparent;
+  font: 400 1.1rem/1 var(--font-sans);
+  cursor: pointer;
+  opacity: 0.4;
+}
+
+.entry-card-remove:hover {
+  opacity: 1;
+}
+
+.entry-card textarea {
+  min-height: 4.5rem;
+  padding: 0.8rem 0.9rem;
+  border: 0;
+}
+
+.card-list-actions {
+  display: flex;
+}
+
+.card-list-add {
+  padding: 0.7rem 0.9rem;
+  border: 1px dashed var(--ink);
+  border-radius: 0;
+  color: var(--ink);
+  background: transparent;
+  font: 700 0.62rem/1 var(--font-sans);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.card-list-add:hover {
+  border-style: solid;
+}
+
+.print-value {
+  display: none;
+}
+
+@media (max-width: 960px) {
+  .text-part-body {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .text-passage,
+  .text-part-body.is-text-right .text-passage {
+    position: static;
+    order: 0;
+  }
+}
+
+@media (max-width: 720px) {
+  .text-topbar {
+    padding: 0.55rem 1.25rem;
+  }
+
+  .text-topbar h1 {
+    display: none;
+  }
+
+  .text-note {
+    padding: 5.5rem 1.25rem 0;
+  }
+
+  .text-part {
+    padding: 2.5rem 1.25rem 3rem;
+  }
+}
+
+@media print {
+  body.practice-04 {
+    --ink: #151515;
+    --paper: #fff;
+    --line: rgba(21, 21, 21, 0.3);
+    --muted: rgba(21, 21, 21, 0.5);
+  }
+
+  body.practice-04,
+  body.practice-04 #root {
+    height: auto;
+    overflow: visible;
+  }
+
+  body.practice-04 .text-part {
+    display: block;
+  }
+
+  body.practice-04 .text-step {
+    display: grid;
+  }
+
+  .text-part-progress,
+  .text-step-foot,
+  .text-step-prompt,
+  .text-passage {
+    display: none;
+  }
+
+  .text-topbar {
+    position: static;
+    height: auto;
+    justify-content: flex-start;
+    padding: 0 0 0.5rem;
+    border-bottom: 1px solid var(--ink);
+  }
+
+  .text-topbar h1 {
+    display: block;
+  }
+
+  .export-pdf,
+  .text-home-link,
+  .entry-card-remove,
+  .card-list-actions,
+  .entry-card.is-blank,
+  .text-shell textarea,
+  .text-shell input {
+    display: none;
+  }
+
+  /* Answers print as text rather than form controls, which browsers refuse to
+     break across pages. */
+  .print-value {
+    display: block;
+    margin: 0;
+    font: 400 0.85rem/1.5 var(--font-serif);
+    white-space: pre-wrap;
+  }
+
+  .text-note {
+    padding: 0.75rem 0 0;
+  }
+
+  .text-part {
+    padding: 1rem 0 0;
+    border-bottom: 0;
+  }
+
+  .text-part-label {
+    margin-bottom: 1rem;
+    padding-bottom: 0.4rem;
+  }
+
+  .text-part-body {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .text-steps {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .text-step {
+    gap: 0.4rem;
+    break-inside: avoid;
+  }
+
+  .entry-card {
+    box-shadow: none;
+    break-inside: avoid;
+  }
+
+  .entry-card-head {
+    display: none;
+  }
+
+  .entry-card .print-value {
+    padding: 0.5rem 0.75rem;
+  }
+}
