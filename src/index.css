@@ -3,8 +3,36 @@
   --paper: #000;
   --line: rgba(248, 186, 0, 0.3);
   --muted: rgba(248, 186, 0, 0.5);
+  --mark: hsl(59 100% 50%);
+  --wash: rgba(248, 186, 0, 0.08);
+  --wash-strong: rgba(248, 186, 0, 0.16);
+  --focus-wash: rgba(255, 216, 61, 0.55);
+  --shadow: rgba(248, 186, 0, 0.28);
+  --shadow-strong: rgba(248, 186, 0, 0.3);
   --font-serif: Starling, serif;
   --font-sans: Lettera, sans-serif;
+}
+
+html.contrast {
+  --ink: #fff;
+  --paper: #000;
+  --line: rgba(255, 255, 255, 0.3);
+  --muted: rgba(255, 255, 255, 0.5);
+  --mark: #fff;
+  --wash: rgba(255, 255, 255, 0.08);
+  --wash-strong: rgba(255, 255, 255, 0.16);
+  --focus-wash: rgba(255, 255, 255, 0.55);
+  --shadow: rgba(255, 255, 255, 0.28);
+  --shadow-strong: rgba(255, 255, 255, 0.3);
+}
+
+html.contrast body.practice-04 {
+  --ink: #000;
+  --paper: #fff;
+  --line: rgba(0, 0, 0, 0.3);
+  --muted: rgba(0, 0, 0, 0.5);
+  --highlight: #e6e6e6;
+  color-scheme: light;
 }
 
 * {
@@ -41,12 +69,53 @@ a {
   color: inherit;
 }
 
+.contrast-toggle {
+  position: fixed;
+  z-index: 400;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  color: var(--ink);
+  background: transparent;
+  cursor: pointer;
+}
+
+.contrast-toggle svg {
+  width: 1.35rem;
+  height: 1.35rem;
+  fill: currentColor;
+}
+
+.contrast-toggle:hover {
+  opacity: 0.65;
+}
+
 @media print {
-  :root {
+  :root,
+  html.contrast {
     --ink: #151515;
     --paper: #fff;
     --line: rgba(21, 21, 21, 0.3);
     --muted: rgba(21, 21, 21, 0.5);
+    --mark: #151515;
+  }
+
+  html.contrast body.practice-04 {
+    --ink: #151515;
+    --paper: #fff;
+    --line: rgba(21, 21, 21, 0.3);
+    --muted: rgba(21, 21, 21, 0.5);
+    --highlight: #fff;
+  }
+
+  .contrast-toggle {
+    display: none;
   }
 
   html {

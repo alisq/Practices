@@ -4,8 +4,8 @@
   color: var(--ink);
   background: var(--paper);
   background-image:
-    linear-gradient(rgba(248, 186, 0, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(248, 186, 0, 0.08) 1px, transparent 1px);
+    linear-gradient(var(--wash) 1px, transparent 1px),
+    linear-gradient(90deg, var(--wash) 1px, transparent 1px);
   background-size: 2rem 2rem;
   overflow: hidden;
 }
@@ -76,7 +76,7 @@
 
 .student-names:focus {
   color: #000;
-  background: rgba(255, 216, 61, 0.55);
+  background: var(--focus-wash);
 }
 
 .header-actions {
@@ -108,12 +108,12 @@
 
 .export-button:hover {
   color: #000;
-  background: hsl(59 100% 50%);
+  background: var(--mark);
 }
 
 .reset-button:hover {
   color: #000;
-  background: hsl(59 100% 50%);
+  background: var(--mark);
 }
 
 .prompt-deck {
@@ -176,7 +176,7 @@
 .prompt-card:hover {
   z-index: 90 !important;
   transform: scale(1);
-  box-shadow: 0.5rem 0.55rem 0 rgba(248, 186, 0, 0.28);
+  box-shadow: 0.5rem 0.55rem 0 var(--shadow);
 }
 
 .prompt-number {
@@ -232,7 +232,7 @@
 
 .prompt-card.is-dragging {
   z-index: 100;
-  box-shadow: 0.55rem 0.65rem 0 rgba(248, 186, 0, 0.3);
+  box-shadow: 0.55rem 0.65rem 0 var(--shadow-strong);
 }
 
 .timeline {
@@ -294,7 +294,7 @@
   background: linear-gradient(
     to bottom,
     hsl(199 100% 50%),
-    hsl(59 100% 50%)
+    var(--mark)
   );
   border: 1px solid var(--ink);
 }
@@ -335,7 +335,7 @@
 .practice-label {
   bottom: 0;
   color: #000;
-  background: hsl(59 100% 50%);
+  background: var(--mark);
 }
 
 .placed-card {

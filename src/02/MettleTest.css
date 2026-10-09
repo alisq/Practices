@@ -43,7 +43,7 @@
 
 .export-pdf:hover {
   color: #000;
-  background: hsl(59 100% 50%);
+  background: var(--mark);
 }
 
 .mettle-home-link {
@@ -127,7 +127,7 @@
 .section-timer.is-expired em {
   padding: 0.22rem 0.35rem;
   color: #000;
-  background: hsl(59 100% 50%);
+  background: var(--mark);
 }
 
 .section-body {
@@ -230,7 +230,7 @@
 .topic-picker select:focus {
   outline: none;
   color: #000;
-  background: hsl(59 100% 50%);
+  background: var(--mark);
 }
 
 .entry-list {
@@ -277,7 +277,7 @@
 .entry-list input:focus {
   outline: none;
   color: #000;
-  background: hsl(59 100% 50%);
+  background: var(--mark);
 }
 
 .entry-remove {
@@ -313,7 +313,7 @@
 .entry-add:hover {
   border-style: solid;
   color: #000;
-  background: hsl(59 100% 50%);
+  background: var(--mark);
 }
 
 .entry-count,
@@ -353,7 +353,7 @@
   gap: 0.5rem;
   padding: 0.8rem 0.9rem;
   border-bottom: 1px solid var(--ink);
-  background: rgba(248, 186, 0, 0.08);
+  background: var(--wash);
 }
 
 .note-question p {
@@ -380,7 +380,7 @@
 .note-card textarea:focus {
   outline: none;
   color: #000;
-  background: hsl(59 100% 50%);
+  background: var(--mark);
 }
 
 .section-foot {
@@ -405,7 +405,7 @@
 
 .section-advance:hover:enabled {
   color: #000;
-  background: hsl(59 100% 50%);
+  background: var(--mark);
 }
 
 .section-advance:disabled {
