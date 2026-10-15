@@ -12,7 +12,8 @@ const archiveTitles = [
   'Inscription',
   'Craft & automation',
   'Under the influence',
-  'Skeuomorphism through the ages',
+  'Cultural Digression',
+  'Skeuomorphism through time',
   'Branding territory',
   'Creation myths',
 ];
@@ -29,7 +30,7 @@ const steps = [
     id: 'names',
     number: '01',
     title: 'Student names',
-    prompt: 'List out the student names.',
+    prompt: 'List out your names.',
     text: true,
     placeholder: 'One name per line',
   },
