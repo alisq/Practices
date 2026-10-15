@@ -5,6 +5,7 @@ import ResearchMap from './01/ResearchMap';
 import MettleTest from './02/MettleTest';
 import ArtifactAnnotation from './03/ArtifactAnnotation';
 import TextAnalysis from './04/TextAnalysis';
+import ArtifactScavenger from './05/ArtifactScavenger';
 
 const CONTRAST_KEY = 'practices-contrast';
 
@@ -68,6 +69,7 @@ function App() {
         <Route path="/02" element={<MettleTest />} />
         <Route path="/03" element={<ArtifactAnnotation />} />
         <Route path="/04" element={<TextAnalysis />} />
+        <Route path="/05" element={<ArtifactScavenger />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
       <ContrastToggle />

@@ -27,6 +27,12 @@ const practices = [
     title: 'Text Analysis',
     description: 'Read an essay, a peer-reviewed paper, and a poem closely, then question, place, and rewrite them.',
   },
+  {
+    path: '/05',
+    number: '05',
+    title: 'Artifact Scavenger Hunt',
+    description: 'Compile and Sequence your own archive of online content and metadata',
+  },
 ];
 
 function Home() {

@@ -1,0 +1,706 @@
+.scavenge-shell {
+  min-height: 100%;
+  color: var(--ink);
+  background: var(--paper);
+}
+
+.scavenge-topbar {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.65rem 3rem;
+  border-bottom: 1px solid var(--line);
+  background: var(--paper);
+}
+
+.scavenge-home-link {
+  color: inherit;
+  font: 700 0.62rem/1 var(--font-sans);
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.scavenge-topbar h1 {
+  margin: 0;
+  font: 700 0.72rem/1 var(--font-sans);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.scavenge-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.scavenge-shell .export-pdf,
+.scavenge-shell .reset-button {
+  padding: 0.65rem 0.9rem;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  color: var(--ink);
+  background: var(--paper);
+  font: 700 0.65rem/1 var(--font-sans);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.scavenge-shell .reset-button {
+  background: transparent;
+}
+
+.scavenge-shell .export-pdf:hover,
+.scavenge-shell .reset-button:hover {
+  color: #000;
+  background: var(--mark);
+}
+
+.scavenge-confirm {
+  position: fixed;
+  z-index: 20;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  background: rgba(0, 0, 0, 0.72);
+}
+
+.scavenge-confirm-panel {
+  width: min(100%, 22rem);
+  display: grid;
+  gap: 1.25rem;
+  padding: 1.4rem 1.35rem 1.25rem;
+  border: 1px solid var(--ink);
+  background: var(--paper);
+  box-shadow: 0.28rem 0.3rem 0 var(--ink);
+}
+
+.scavenge-confirm-panel p {
+  margin: 0;
+  font: 400 1.6rem/1.15 var(--font-serif);
+  letter-spacing: -0.03em;
+}
+
+.scavenge-confirm-actions {
+  display: flex;
+  gap: 0.65rem;
+}
+
+.scavenge-confirm-actions button {
+  padding: 0.65rem 0.9rem;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  color: var(--ink);
+  background: transparent;
+  font: 700 0.65rem/1 var(--font-sans);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.scavenge-confirm-actions button:hover,
+.scavenge-confirm-actions button:focus-visible {
+  outline: none;
+  color: #000;
+  background: var(--mark);
+}
+
+.scavenge-step > .export-pdf {
+  justify-self: start;
+}
+
+.scavenge-print {
+  display: none;
+}
+
+.scavenge-step {
+  display: grid;
+  align-content: start;
+  gap: 2.5rem;
+  padding: 7rem 3rem 4rem;
+}
+
+.scavenge-step-note {
+  margin: 0;
+  font: 700 0.62rem/1.3 var(--font-sans);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.scavenge-step + .scavenge-step {
+  padding-top: 3rem;
+  border-top: 1px solid var(--line);
+}
+
+.scavenge-step-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--ink);
+}
+
+.scavenge-step-label {
+  display: flex;
+  align-items: baseline;
+  gap: 0.85rem;
+  margin: 0;
+  font: 700 0.72rem/1 var(--font-sans);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.scavenge-step-number {
+  padding: 0.3rem 0.45rem;
+  border: 1px solid var(--ink);
+}
+
+.scavenge-step-body {
+  display: grid;
+  gap: 2rem;
+  width: min(100%, 42rem);
+}
+
+.scavenge-step-body.is-wide {
+  width: 100%;
+}
+
+.scavenge-step-copy {
+  display: grid;
+  gap: 1.15rem;
+  max-width: 42rem;
+}
+
+.scavenge-step-prompt {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(1.9rem, 3.2vw, 3.1rem);
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+}
+
+.scavenge-archives {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.scavenge-archives a {
+  font: 400 0.95rem/1.45 var(--font-sans);
+  letter-spacing: 0.01em;
+  overflow-wrap: anywhere;
+  text-underline-offset: 0.18em;
+}
+
+.scavenge-archives a:hover {
+  color: var(--paper);
+  background: var(--ink);
+  text-decoration: none;
+}
+
+.scavenge-help {
+  max-width: 32rem;
+  margin: 0;
+  padding-left: 0.85rem;
+  border-left: 1px solid var(--ink);
+  font: 400 0.8rem/1.4 var(--font-sans);
+}
+
+.scavenge-editor {
+  width: 100%;
+  border: 1px solid var(--ink);
+  background: var(--paper);
+  box-shadow: 0.28rem 0.3rem 0 var(--ink);
+}
+
+.scavenge-editor-toolbar {
+  display: flex;
+  border-bottom: 1px solid var(--ink);
+}
+
+.scavenge-editor-toolbar button {
+  min-width: 2.4rem;
+  min-height: 2.2rem;
+  padding: 0.5rem 0.7rem;
+  border: 0;
+  border-right: 1px solid var(--ink);
+  border-radius: 0;
+  color: var(--ink);
+  background: transparent;
+  font: 700 0.72rem/1 var(--font-sans);
+  cursor: pointer;
+}
+
+.scavenge-editor-toolbar button:hover,
+.scavenge-editor-toolbar button:focus-visible {
+  outline: none;
+  color: #000;
+  background: var(--mark);
+}
+
+.scavenge-editor-surface {
+  min-height: 10rem;
+  padding: 0.9rem 1rem;
+  outline: none;
+  font: 400 1.05rem/1.5 var(--font-serif);
+  overflow-wrap: anywhere;
+}
+
+.scavenge-editor-surface:focus {
+  color: #000;
+  background: var(--mark);
+}
+
+.scavenge-editor-surface:empty::before {
+  color: var(--muted);
+  content: attr(data-placeholder);
+  pointer-events: none;
+}
+
+.scavenge-names {
+  width: 100%;
+  min-height: 6.5rem;
+  padding: 0.95rem 1rem;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  color: var(--ink);
+  background: var(--paper);
+  box-shadow: 0.28rem 0.3rem 0 var(--ink);
+  font: 400 1.15rem/1.45 var(--font-serif);
+  resize: vertical;
+}
+
+.scavenge-names::placeholder {
+  color: var(--muted);
+}
+
+.scavenge-names:focus {
+  outline: none;
+  color: #000;
+  background: var(--mark);
+}
+
+.scavenge-step select {
+  width: 100%;
+  padding: 0.95rem 1rem;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  color: var(--ink);
+  background: var(--paper);
+  box-shadow: 0.28rem 0.3rem 0 var(--ink);
+  font: 400 1.15rem/1.2 var(--font-serif);
+  cursor: pointer;
+}
+
+.scavenge-step select.is-empty {
+  color: var(--muted);
+}
+
+.scavenge-step select:focus {
+  outline: none;
+  color: #000;
+  background: var(--mark);
+}
+
+.scavenge-repeater {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.scavenge-table-head,
+.scavenge-artifact {
+  display: grid;
+  grid-template-columns: 1.15rem 25% minmax(0, 1fr) minmax(0, 1fr);
+  column-gap: 1rem;
+  align-items: start;
+}
+
+.scavenge-table-head {
+  padding: 0 1.75rem 0.55rem 0;
+  border-bottom: 1px solid var(--ink);
+  font: 700 0.62rem/1 var(--font-sans);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.scavenge-repeater ol {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.scavenge-artifact {
+  --field-offset: calc(0.62rem + 0.4rem);
+  position: relative;
+  padding: 0.85rem 1.75rem 0.85rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.scavenge-artifact.is-row-dragging {
+  opacity: 0.4;
+}
+
+.scavenge-artifact.is-drop-before {
+  box-shadow: inset 0 2px 0 var(--ink);
+}
+
+.scavenge-artifact.is-drop-after {
+  box-shadow: inset 0 -2px 0 var(--ink);
+}
+
+.scavenge-grip {
+  align-self: center;
+  display: grid;
+  place-items: center;
+  width: 1.15rem;
+  height: 1.75rem;
+  padding: 0;
+  border: 0;
+  color: var(--ink);
+  background: transparent;
+  cursor: grab;
+}
+
+.scavenge-grip:active {
+  cursor: grabbing;
+}
+
+.scavenge-grip-mark {
+  display: block;
+  width: 0.7rem;
+  height: 0.55rem;
+  background:
+    linear-gradient(currentColor, currentColor) 0 0 / 100% 1px no-repeat,
+    linear-gradient(currentColor, currentColor) 0 50% / 100% 1px no-repeat,
+    linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat;
+}
+
+.scavenge-image-cell {
+  display: grid;
+  align-content: start;
+  gap: 0.4rem;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.scavenge-artifact-number,
+.scavenge-count {
+  margin: 0;
+  font: 700 0.62rem/1 var(--font-sans);
+  letter-spacing: 0.06em;
+}
+
+.scavenge-remove,
+.scavenge-image-clear,
+.scavenge-add {
+  border-radius: 0;
+  font: 700 0.62rem/1 var(--font-sans);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.scavenge-remove {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  padding: 0;
+  border: 0;
+  color: var(--ink);
+  background: transparent;
+  font-size: 1.1rem;
+  line-height: 1;
+  text-transform: none;
+  opacity: 1;
+  transform: translateY(-50%);
+}
+
+.scavenge-image {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  max-width: 100%;
+  min-height: 6.5rem;
+  padding: 0.45rem;
+  border: 1px dashed var(--ink);
+  background: transparent;
+  cursor: copy;
+}
+
+.scavenge-image.is-filled {
+  place-items: stretch;
+  padding: 0;
+  border-style: solid;
+  cursor: default;
+}
+
+.scavenge-image.is-dragging,
+.scavenge-image:focus {
+  outline: none;
+  color: #000;
+  background: var(--mark);
+}
+
+.scavenge-image.is-filled:focus,
+.scavenge-image.is-filled.is-dragging {
+  color: var(--ink);
+  background: var(--paper);
+  box-shadow: inset 0 0 0 2px var(--ink);
+}
+
+.scavenge-image p {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  letter-spacing: -0.02em;
+  text-align: center;
+}
+
+.scavenge-image.is-empty {
+  color: var(--muted);
+}
+
+.scavenge-image img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 12rem;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.scavenge-image-clear {
+  justify-self: start;
+  margin-top: -0.35rem;
+  padding: 0;
+  border: 0;
+  color: var(--ink);
+  background: transparent;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.scavenge-image-clear:hover {
+  color: var(--paper);
+  background: var(--ink);
+  text-decoration: none;
+}
+
+.scavenge-image-error {
+  margin: 0;
+  font: 700 0.68rem/1.4 var(--font-sans);
+  letter-spacing: 0.03em;
+}
+
+.scavenge-field {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.scavenge-field span {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.scavenge-field textarea {
+  display: block;
+  width: 100%;
+  min-height: 6.5rem;
+  margin-top: var(--field-offset);
+  padding: 0.75rem 0.85rem;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  color: var(--ink);
+  background: var(--paper);
+  font: 400 0.95rem/1.45 var(--font-serif);
+  overflow: hidden;
+  resize: vertical;
+}
+
+.scavenge-field textarea::placeholder {
+  color: var(--muted);
+}
+
+.scavenge-field textarea:focus {
+  outline: none;
+  color: #000;
+  background: var(--mark);
+}
+
+.scavenge-repeater-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+}
+
+.scavenge-add {
+  padding: 0.75rem 0.95rem;
+  border: 1px dashed var(--ink);
+  color: var(--ink);
+  background: transparent;
+}
+
+.scavenge-add:hover {
+  border-style: solid;
+  color: #000;
+  background: var(--mark);
+}
+
+@media (max-width: 720px) {
+  .scavenge-topbar,
+  .scavenge-step {
+    padding-right: 1.25rem;
+    padding-left: 1.25rem;
+  }
+
+  .scavenge-step {
+    padding-top: 6rem;
+  }
+
+  .scavenge-step + .scavenge-step {
+    padding-top: 2.5rem;
+  }
+
+  .scavenge-table-head {
+    display: none;
+  }
+
+  .scavenge-artifact {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 0.85rem;
+    padding-right: 0;
+    padding-left: 1.25rem;
+  }
+
+  .scavenge-grip {
+    position: absolute;
+    top: 1.5rem;
+    left: 0;
+  }
+
+  .scavenge-remove {
+    top: 1.5rem;
+    transform: none;
+  }
+
+  .scavenge-image-cell {
+    max-width: 25%;
+  }
+
+  .scavenge-field textarea {
+    margin-top: 0;
+  }
+
+  .scavenge-field span {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+    font: 700 0.62rem/1 var(--font-sans);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .scavenge-remove {
+    top: 0;
+    right: 0;
+  }
+}
+
+@media print {
+  body.practice-05,
+  body.practice-05 #root {
+    height: auto;
+    overflow: visible;
+  }
+
+  .scavenge-shell {
+    background: #fff;
+  }
+
+  .scavenge-topbar,
+  .scavenge-step,
+  .scavenge-confirm {
+    display: none;
+  }
+
+  .scavenge-print {
+    display: block;
+    color: #151515;
+    background: #fff;
+    font-synthesis: weight style;
+  }
+
+  .scavenge-print-names {
+    margin: 0 0 1rem;
+    font: 400 11pt/1.45 var(--font-sans);
+    white-space: pre-wrap;
+  }
+
+  .scavenge-print h1 {
+    margin: 0 0 1rem;
+    font: 400 1.7rem/1.2 var(--font-serif);
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  .scavenge-print-copy {
+    margin: 0 0 1.25rem;
+    font: 400 11pt/1.5 var(--font-serif);
+  }
+
+  .scavenge-print ol {
+    list-style: none;
+    margin: 0 0 1.25rem;
+    padding: 0;
+  }
+
+  .scavenge-print li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+    margin: 0 0 0.75rem;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .scavenge-print img {
+    width: 1.8cm;
+    height: auto;
+    flex: none;
+  }
+
+  .scavenge-print-metadata,
+  .scavenge-print-caption {
+    margin: 0;
+    font: 400 10pt/1.4 var(--font-serif);
+    white-space: pre-wrap;
+  }
+
+  .scavenge-print-caption {
+    margin-top: 0.2rem;
+  }
+}
