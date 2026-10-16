@@ -531,7 +531,7 @@ function ArtifactAnnotation() {
         <div className="header-actions">
           {selected && (
             <button className="reset-button" type="button" onClick={returnToGrid}>
-              Change artifact
+              Reset
             </button>
           )}
           <button className="export-pdf" type="button" onClick={() => window.print()}>

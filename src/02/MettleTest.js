@@ -341,8 +341,10 @@ function MettleTest() {
   const [unlocked, setUnlocked] = useState(() => loadUnlocked(loadAnswers()));
   const [now, setNow] = useState(() => Date.now());
   const [pendingScroll, setPendingScroll] = useState(null);
+  const [confirmReset, setConfirmReset] = useState(false);
   const startTimes = useRef({});
   const sectionRefs = useRef([]);
+  const confirmRef = useRef(null);
 
   useEffect(() => {
     document.title = 'Practice 02: Research Question Mettle Testing';
@@ -404,6 +406,20 @@ function MettleTest() {
     setPendingScroll(null);
   }, [pendingScroll]);
 
+  useEffect(() => {
+    if (!confirmReset) return undefined;
+    const previouslyFocused = document.activeElement;
+    confirmRef.current?.querySelector('button')?.focus();
+    const onKey = (event) => {
+      if (event.key === 'Escape') setConfirmReset(false);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      if (previouslyFocused instanceof HTMLElement) previouslyFocused.focus();
+    };
+  }, [confirmReset]);
+
   const setAnswer = (key, value) => {
     setAnswers((current) => ({ ...current, [key]: value }));
   };
@@ -411,6 +427,19 @@ function MettleTest() {
   const advanceFrom = (index) => {
     setUnlocked((current) => Math.max(current, index + 2));
     setPendingScroll(index + 1);
+  };
+
+  const resetWork = () => {
+    startTimes.current = { 0: Date.now() };
+    setNow(Date.now());
+    setAnswers({
+      questions: [createEntry()],
+      refined: [createEntry()],
+    });
+    setUnlocked(1);
+    setPendingScroll(null);
+    setConfirmReset(false);
+    window.scrollTo(0, 0);
   };
 
   const remainingFor = (index, minutes) => {
@@ -423,14 +452,41 @@ function MettleTest() {
     <main className="mettle-shell">
       <header className="mettle-topbar">
         <div className="topbar-left">
-          <button className="export-pdf" onClick={() => window.print()}>Export PDF</button>
           <Link to="/" className="mettle-home-link">Practices</Link>
         </div>
         <h1>Research Question Mettle Testing</h1>
-        <span className="mettle-progress">
-          {String(Math.min(unlocked, TOTAL_PARTS)).padStart(2, '0')} / {String(TOTAL_PARTS).padStart(2, '0')}
-        </span>
+        <div className="header-actions">
+          <span className="mettle-progress">
+            {String(Math.min(unlocked, TOTAL_PARTS)).padStart(2, '0')} / {String(TOTAL_PARTS).padStart(2, '0')}
+          </span>
+          <button className="reset-button" type="button" onClick={() => setConfirmReset(true)}>
+            Reset
+          </button>
+          <button className="export-pdf" type="button" onClick={() => window.print()}>
+            Export PDF
+          </button>
+        </div>
       </header>
+
+      {confirmReset && (
+        <div
+          className="reset-confirm"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="reset-confirm-title"
+          onClick={(event) => {
+            if (event.target === event.currentTarget) setConfirmReset(false);
+          }}
+        >
+          <div className="reset-confirm-panel" ref={confirmRef}>
+            <p id="reset-confirm-title">Are you sure? This will delete all your progress thus far.</p>
+            <div className="reset-confirm-actions">
+              <button type="button" onClick={() => setConfirmReset(false)}>Cancel</button>
+              <button type="button" onClick={resetWork}>Reset</button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {parts.slice(0, unlocked).map((part, index) => {
         const remaining = remainingFor(index, part.minutes);

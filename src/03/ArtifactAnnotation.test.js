@@ -150,7 +150,7 @@ test('keeps answers and the active part when the page is remounted', () => {
   );
 });
 
-test('change artifact fully resets answers and progress', () => {
+test('reset fully resets answers and progress', () => {
   renderPractice();
 
   fireEvent.click(tile(1));
@@ -159,7 +159,7 @@ test('change artifact fully resets answers and progress', () => {
     screen.getByRole('textbox', { name: 'Formal Analysis: Describe what you see' }),
     '<p>A formal observation.</p>',
   );
-  fireEvent.click(screen.getByRole('button', { name: /change artifact/i }));
+  fireEvent.click(screen.getByRole('button', { name: /^reset$/i }));
 
   expect(screen.getByRole('heading', { name: /select an artifact/i })).toBeInTheDocument();
   expect(screen.getAllByRole('listitem')).toHaveLength(content.length);

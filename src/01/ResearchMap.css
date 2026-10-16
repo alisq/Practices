@@ -116,6 +116,56 @@
   background: var(--mark);
 }
 
+.site-shell .reset-confirm {
+  position: fixed;
+  z-index: 500;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  background: rgba(0, 0, 0, 0.72);
+}
+
+.site-shell .reset-confirm-panel {
+  width: min(100%, 22rem);
+  display: grid;
+  gap: 1.25rem;
+  padding: 1.4rem 1.35rem 1.25rem;
+  border: 1px solid var(--ink);
+  background: var(--paper);
+  box-shadow: 0.28rem 0.3rem 0 var(--ink);
+}
+
+.site-shell .reset-confirm-panel p {
+  margin: 0;
+  font: 400 1.6rem/1.15 var(--font-serif);
+  letter-spacing: -0.03em;
+}
+
+.site-shell .reset-confirm-actions {
+  display: flex;
+  gap: 0.65rem;
+}
+
+.site-shell .reset-confirm-actions button {
+  padding: 0.65rem 0.9rem;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  color: var(--ink);
+  background: transparent;
+  font: 700 0.65rem/1 var(--font-sans);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.site-shell .reset-confirm-actions button:hover,
+.site-shell .reset-confirm-actions button:focus-visible {
+  outline: none;
+  color: #000;
+  background: var(--mark);
+}
+
 .prompt-deck {
   position: fixed;
   z-index: 35;
@@ -430,6 +480,7 @@
 
   .export-button,
   .reset-button,
+  .reset-confirm,
   .data-picker,
   .home-link {
     display: none;

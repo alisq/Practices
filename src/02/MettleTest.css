@@ -55,10 +55,89 @@
 }
 
 .mettle-topbar h1 {
+  flex: 1;
+  min-width: 0;
   margin: 0;
+  overflow: hidden;
   font: 700 0.72rem/1 var(--font-sans);
   letter-spacing: 0.06em;
+  text-align: center;
+  text-overflow: ellipsis;
   text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.mettle-shell .header-actions {
+  flex: none;
+}
+
+.mettle-shell .export-pdf,
+.mettle-shell .reset-button {
+  padding: 0.65rem 0.9rem;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  color: var(--ink);
+  background: var(--paper);
+  font: 700 0.65rem/1 var(--font-sans);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.mettle-shell .reset-button {
+  background: transparent;
+}
+
+.mettle-shell .export-pdf:hover,
+.mettle-shell .reset-button:hover,
+.mettle-shell .reset-confirm-actions button:hover,
+.mettle-shell .reset-confirm-actions button:focus-visible {
+  outline: none;
+  color: #000;
+  background: var(--mark);
+}
+
+.mettle-shell .reset-confirm {
+  position: fixed;
+  z-index: 500;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  background: rgba(0, 0, 0, 0.72);
+}
+
+.mettle-shell .reset-confirm-panel {
+  width: min(100%, 22rem);
+  display: grid;
+  gap: 1.25rem;
+  padding: 1.4rem 1.35rem 1.25rem;
+  border: 1px solid var(--ink);
+  background: var(--paper);
+  box-shadow: 0.28rem 0.3rem 0 var(--ink);
+}
+
+.mettle-shell .reset-confirm-panel p {
+  margin: 0;
+  font: 400 1.6rem/1.15 var(--font-serif);
+  letter-spacing: -0.03em;
+}
+
+.mettle-shell .reset-confirm-actions {
+  display: flex;
+  gap: 0.65rem;
+}
+
+.mettle-shell .reset-confirm-actions button {
+  padding: 0.65rem 0.9rem;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  color: var(--ink);
+  background: transparent;
+  font: 700 0.65rem/1 var(--font-sans);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
 }
 
 .mettle-progress {
@@ -431,6 +510,15 @@
     display: none;
   }
 
+  .mettle-shell .header-actions {
+    gap: 0.45rem;
+  }
+
+  .mettle-shell .export-pdf,
+  .mettle-shell .reset-button {
+    padding: 0.5rem 0.55rem;
+  }
+
   .topbar-left {
     gap: 0.85rem;
   }
@@ -476,9 +564,14 @@
 
   .mettle-topbar h1 {
     display: block;
+    flex: none;
+    overflow: visible;
+    text-align: left;
   }
 
   .export-pdf,
+  .mettle-shell .reset-button,
+  .mettle-shell .reset-confirm,
   .mettle-home-link,
   .mettle-progress,
   .section-timer,

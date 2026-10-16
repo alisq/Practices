@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './TextAnalysis.css';
 import content from './content.json';
@@ -74,6 +74,16 @@ const readTerms = (value) => {
     }));
   return list.length ? list : [createTerm()];
 };
+
+const blankAnswers = () => Object.fromEntries(parts.map((part) => {
+  const answers = {};
+  part.steps.forEach((step) => {
+    if (step.type === 'stances') answers[step.key] = [createStance()];
+    if (step.type === 'terms') answers[step.key] = [createTerm()];
+    if (step.type === 'text') answers[step.key] = '';
+  });
+  return [part.id, answers];
+}));
 
 const loadAnswers = () => {
   let saved = {};
@@ -225,6 +235,8 @@ function TermList({ entries, onChange }) {
 function TextAnalysis() {
   const [answers, setAnswers] = useState(loadAnswers);
   const [activeStep, setActiveStep] = useState(loadStep);
+  const [confirmReset, setConfirmReset] = useState(false);
+  const confirmRef = useRef(null);
   const active = sequence[activeStep];
 
   useEffect(() => {
@@ -274,11 +286,32 @@ function TextAnalysis() {
     }
   }, [answers]);
 
+  useEffect(() => {
+    if (!confirmReset) return undefined;
+    const previouslyFocused = document.activeElement;
+    confirmRef.current?.querySelector('button')?.focus();
+    const onKey = (event) => {
+      if (event.key === 'Escape') setConfirmReset(false);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      if (previouslyFocused instanceof HTMLElement) previouslyFocused.focus();
+    };
+  }, [confirmReset]);
+
   const setAnswer = (partId, key, value) => {
     setAnswers((current) => ({
       ...current,
       [partId]: { ...current[partId], [key]: value },
     }));
+  };
+
+  const resetWork = () => {
+    setAnswers(blankAnswers());
+    setActiveStep(0);
+    setConfirmReset(false);
+    window.scrollTo(0, 0);
   };
 
   return (
@@ -288,10 +321,35 @@ function TextAnalysis() {
           <Link to="/" className="text-home-link">Practices</Link>
           <h1>Text Analysis</h1>
         </div>
-        <button className="export-pdf" type="button" onClick={() => window.print()}>
-          Export PDF
-        </button>
+        <div className="header-actions">
+          <button className="reset-button" type="button" onClick={() => setConfirmReset(true)}>
+            Reset
+          </button>
+          <button className="export-pdf" type="button" onClick={() => window.print()}>
+            Export PDF
+          </button>
+        </div>
       </header>
+
+      {confirmReset && (
+        <div
+          className="reset-confirm"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="reset-confirm-title"
+          onClick={(event) => {
+            if (event.target === event.currentTarget) setConfirmReset(false);
+          }}
+        >
+          <div className="reset-confirm-panel" ref={confirmRef}>
+            <p id="reset-confirm-title">Are you sure? This will delete all your progress thus far.</p>
+            <div className="reset-confirm-actions">
+              <button type="button" onClick={() => setConfirmReset(false)}>Cancel</button>
+              <button type="button" onClick={resetWork}>Reset</button>
+            </div>
+          </div>
+        </div>
+      )}
 
       <p className="text-note">NOTE: PLEASE DO NOT RELY ON AI FOR THIS PROJECT. (OBVIOUSLY)</p>
 

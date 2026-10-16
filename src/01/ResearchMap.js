@@ -73,6 +73,9 @@ function ResearchMap() {
   const [studentNames, setStudentNames] = useState(() => (
     localStorage.getItem(STUDENT_NAMES_KEY) || 'Student names'
   ));
+  const [confirmReset, setConfirmReset] = useState(false);
+  const confirmRef = useRef(null);
+  const namesRef = useRef(null);
 
   useEffect(() => {
     document.title = 'Practice 01: Research Process Timeline';
@@ -110,6 +113,20 @@ function ResearchMap() {
   useEffect(() => {
     localStorage.setItem(STUDENT_NAMES_KEY, studentNames);
   }, [studentNames]);
+
+  useEffect(() => {
+    if (!confirmReset) return undefined;
+    const previouslyFocused = document.activeElement;
+    confirmRef.current?.querySelector('button')?.focus();
+    const onKey = (event) => {
+      if (event.key === 'Escape') setConfirmReset(false);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      if (previouslyFocused instanceof HTMLElement) previouslyFocused.focus();
+    };
+  }, [confirmReset]);
 
   const startCardDrag = (event, card) => {
     event.currentTarget.setPointerCapture(event.pointerId);
@@ -169,6 +186,9 @@ function ResearchMap() {
       position: null,
     })));
     setStudentNames('Student names');
+    if (namesRef.current) namesRef.current.textContent = 'Student names';
+    setDragging(null);
+    setConfirmReset(false);
   };
 
   const selectDataset = (event) => {
@@ -225,6 +245,7 @@ function ResearchMap() {
           suppressContentEditableWarning
           role="textbox"
           aria-label="Student names"
+          ref={namesRef}
           onInput={(event) => setStudentNames(event.currentTarget.textContent)}
           onFocus={(event) => {
             if (event.currentTarget.textContent === 'Student names') {
@@ -236,14 +257,34 @@ function ResearchMap() {
           {studentNames}
         </div>
         <div className="header-actions">
-          <button className="reset-button" onClick={resetCards}>
+          <button className="reset-button" type="button" onClick={() => setConfirmReset(true)}>
             Reset
           </button>
-          <button className="export-button" onClick={() => window.print()}>
+          <button className="export-button" type="button" onClick={() => window.print()}>
             Export PDF
           </button>
         </div>
       </header>
+
+      {confirmReset && (
+        <div
+          className="reset-confirm"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="reset-confirm-title"
+          onClick={(event) => {
+            if (event.target === event.currentTarget) setConfirmReset(false);
+          }}
+        >
+          <div className="reset-confirm-panel" ref={confirmRef}>
+            <p id="reset-confirm-title">Are you sure? This will delete all your progress thus far.</p>
+            <div className="reset-confirm-actions">
+              <button type="button" onClick={() => setConfirmReset(false)}>Cancel</button>
+              <button type="button" onClick={resetCards}>Reset</button>
+            </div>
+          </div>
+        </div>
+      )}
 
       <h1 className="project-description">
         {datasets[selectedDataset]?.projectDescription}
