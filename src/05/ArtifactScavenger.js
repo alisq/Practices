@@ -46,7 +46,7 @@ const steps = [
     id: 'archive',
     number: '03',
     title: 'Create Archive',
-    prompt: 'Starting with Elizabeth Goodspeed\'s Casual Archivist: Sources, collect & sequence at least 5 artifacts that relate to your topic',
+    prompt: 'Starting with Elizabeth Goodspeed\'s Casual Archivist: Sources, collect & sequence at least 5 archive images that relate to your topic',
     help: 'Don\'t just pick the first images you find... explore, collect, edit, then upload',
     archives: approvedArchives,
   },
