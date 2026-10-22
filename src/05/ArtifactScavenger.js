@@ -272,17 +272,10 @@ function ArtifactCard({
   onRowDragOver,
   onRowDrop,
 }) {
-  const metadataRef = useRef(null);
-  const captionRef = useRef(null);
   const [pending, setPending] = useState(false);
   const [error, setError] = useState('');
   const [dragging, setDragging] = useState(false);
   const number = String(index + 1).padStart(2, '0');
-
-  useEffect(() => {
-    fitTextarea(metadataRef.current);
-    fitTextarea(captionRef.current);
-  }, [entry.metadata, entry.caption]);
 
   const storeImage = async (file) => {
     if (!file) return;
@@ -396,12 +389,8 @@ function ArtifactCard({
       <label className="scavenge-field">
         <span>Metadata</span>
         <textarea
-          ref={metadataRef}
           value={entry.metadata}
-          onChange={(event) => {
-            fitTextarea(event.currentTarget);
-            onChange(entry.id, { metadata: event.target.value });
-          }}
+          onChange={(event) => onChange(entry.id, { metadata: event.target.value })}
           placeholder="Paste metadata"
           aria-label={`Metadata for artifact ${number}`}
         />
@@ -410,12 +399,8 @@ function ArtifactCard({
       <label className="scavenge-field">
         <span>Caption</span>
         <textarea
-          ref={captionRef}
           value={entry.caption}
-          onChange={(event) => {
-            fitTextarea(event.currentTarget);
-            onChange(entry.id, { caption: event.target.value });
-          }}
+          onChange={(event) => onChange(entry.id, { caption: event.target.value })}
           placeholder="Paste caption"
           aria-label={`Caption for artifact ${number}`}
         />
