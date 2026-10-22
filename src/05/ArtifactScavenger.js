@@ -391,7 +391,7 @@ function ArtifactCard({
         <textarea
           value={entry.metadata}
           onChange={(event) => onChange(entry.id, { metadata: event.target.value })}
-          placeholder="Paste metadata"
+          placeholder="Paste any metadata you can find about the artifact (title, date, etc.)"
           aria-label={`Metadata for artifact ${number}`}
         />
       </label>
@@ -401,7 +401,7 @@ function ArtifactCard({
         <textarea
           value={entry.caption}
           onChange={(event) => onChange(entry.id, { caption: event.target.value })}
-          placeholder="Paste caption"
+          placeholder="Write a short description of the artifact and its relationship to your archive title."
           aria-label={`Caption for artifact ${number}`}
         />
       </label>
