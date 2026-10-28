@@ -33,6 +33,12 @@ const practices = [
     title: 'Artifact Scavenger Hunt',
     description: 'Compile and Sequence your own archive of online content and metadata',
   },
+  {
+    path: '/06',
+    number: '06',
+    title: 'Speculative Interview',
+    description: 'Plan an expert interview and user survey on a given topic.',
+  },
 ];
 
 function Home() {

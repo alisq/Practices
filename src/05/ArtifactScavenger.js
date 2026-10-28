@@ -75,6 +75,7 @@ const createId = () => {
 const emptyArtifact = () => ({
   id: createId(),
   image: '',
+  url: '',
   metadata: '',
   caption: '',
 });
@@ -82,11 +83,14 @@ const emptyArtifact = () => ({
 const readArtifact = (entry) => ({
   id: typeof entry?.id === 'string' ? entry.id : createId(),
   image: typeof entry?.image === 'string' ? entry.image : '',
+  url: typeof entry?.url === 'string' ? entry.url : '',
   metadata: typeof entry?.metadata === 'string' ? entry.metadata : '',
   caption: typeof entry?.caption === 'string' ? entry.caption : '',
 });
 
-const isBlankArtifact = (entry) => !entry.image && !entry.metadata.trim() && !entry.caption.trim();
+const isBlankArtifact = (entry) => (
+  !entry.image && !entry.url.trim() && !entry.metadata.trim() && !entry.caption.trim()
+);
 
 const plainText = (html) => String(html || '')
   .replace(/<[^>]*>/g, ' ')
@@ -194,7 +198,7 @@ const persist = async (answers) => {
     title: answers.title,
     sequence: answers.sequence,
     description: answers.description,
-    artifacts: answers.artifacts.map(({ id, metadata, caption }) => ({ id, metadata, caption })),
+    artifacts: answers.artifacts.map(({ id, url, metadata, caption }) => ({ id, url, metadata, caption })),
   };
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(lite));
@@ -386,15 +390,28 @@ function ArtifactCard({
         {error && <p className="scavenge-image-error">{error}</p>}
       </div>
 
-      <label className="scavenge-field">
-        <span>Metadata</span>
-        <textarea
-          value={entry.metadata}
-          onChange={(event) => onChange(entry.id, { metadata: event.target.value })}
-          placeholder="Paste any metadata you can find about the artifact (title, date, etc.)"
-          aria-label={`Metadata for artifact ${number}`}
-        />
-      </label>
+      <div className="scavenge-meta">
+        <label className="scavenge-field scavenge-url">
+          <span>URL</span>
+          <input
+            type="url"
+            value={entry.url}
+            onChange={(event) => onChange(entry.id, { url: event.target.value })}
+            placeholder="Paste a URL"
+            aria-label={`URL for artifact ${number}`}
+            inputMode="url"
+          />
+        </label>
+        <label className="scavenge-field">
+          <span>Metadata</span>
+          <textarea
+            value={entry.metadata}
+            onChange={(event) => onChange(entry.id, { metadata: event.target.value })}
+            placeholder="Paste any metadata you can find about the artifact (title, date, etc.)"
+            aria-label={`Metadata for artifact ${number}`}
+          />
+        </label>
+      </div>
 
       <label className="scavenge-field">
         <span>Caption</span>
@@ -673,7 +690,7 @@ function PrintDocument({ answers }) {
   const description = plainText(answers.description) ? sanitizeFormat(answers.description) : '';
   const sequence = plainText(answers.sequence) ? sanitizeFormat(answers.sequence) : '';
   const artifacts = answers.artifacts.filter((entry) => (
-    entry.image || entry.metadata.trim() || entry.caption.trim()
+    entry.image || entry.url.trim() || entry.metadata.trim() || entry.caption.trim()
   ));
   const names = answers.names
     .split(/\r?\n/)
@@ -694,6 +711,7 @@ function PrintDocument({ answers }) {
             <li key={entry.id}>
               {entry.image && <img src={entry.image} alt="" />}
               <div>
+                {entry.url.trim() && <p className="scavenge-print-url">{entry.url}</p>}
                 {entry.metadata.trim() && <p className="scavenge-print-metadata">{entry.metadata}</p>}
                 {entry.caption.trim() && <p className="scavenge-print-caption">{entry.caption}</p>}
               </div>

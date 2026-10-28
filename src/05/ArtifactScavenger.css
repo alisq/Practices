@@ -343,7 +343,9 @@
 }
 
 .scavenge-artifact {
-  --field-offset: calc(0.62rem + 0.4rem);
+  --url-row: 2.15rem;
+  --field-gap: 0.4rem;
+  --field-offset: calc(var(--url-row) + var(--field-gap));
   position: relative;
   padding: 0.85rem 1.75rem 0.85rem 0;
   border-bottom: 1px solid var(--line);
@@ -391,9 +393,15 @@
 .scavenge-image-cell {
   display: grid;
   align-content: start;
-  gap: 0.4rem;
+  gap: var(--field-gap);
   min-width: 0;
   max-width: 100%;
+}
+
+.scavenge-artifact-number {
+  display: flex;
+  align-items: center;
+  height: var(--url-row);
 }
 
 .scavenge-artifact-number,
@@ -506,6 +514,39 @@
   letter-spacing: 0.03em;
 }
 
+.scavenge-meta {
+  display: grid;
+  gap: var(--field-gap);
+  align-content: start;
+  min-width: 0;
+}
+
+.scavenge-meta .scavenge-field textarea {
+  margin-top: 0;
+}
+
+.scavenge-url input {
+  display: block;
+  width: 100%;
+  height: var(--url-row);
+  padding: 0 0.85rem;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  color: var(--ink);
+  background: var(--paper);
+  font: 400 0.95rem/1.2 var(--font-serif);
+}
+
+.scavenge-url input::placeholder {
+  color: var(--muted);
+}
+
+.scavenge-url input:focus {
+  outline: none;
+  color: #000;
+  background: var(--mark);
+}
+
 .scavenge-field {
   display: grid;
   gap: 0.55rem;
@@ -608,7 +649,8 @@
     max-width: 25%;
   }
 
-  .scavenge-field textarea {
+  .scavenge-field textarea,
+  .scavenge-field.scavenge-url input {
     margin-top: 0;
   }
 
@@ -693,11 +735,13 @@
     flex: none;
   }
 
+  .scavenge-print-url,
   .scavenge-print-metadata,
   .scavenge-print-caption {
     margin: 0;
     font: 400 10pt/1.4 var(--font-serif);
     white-space: pre-wrap;
+    overflow-wrap: anywhere;
   }
 
   .scavenge-print-caption {
