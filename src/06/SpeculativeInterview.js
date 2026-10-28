@@ -62,10 +62,24 @@ const steps = [
     prompt: 'Write, sequence, and evaluate at least three interview questions for your expert.',
   },
   {
-    id: 'surveys',
+    id: 'format',
     number: '04',
+    title: 'Interview format',
+    prompt: 'Speculate on the format of the interview (online? in person? ideal location for the interview? One-on-one? Multiple interviewers? Snack offerings? etc.) Justify your decisions.',
+    placeholder: 'Write your speculation…',
+  },
+  {
+    id: 'surveys',
+    number: '05',
     title: 'User Surveys',
     prompt: 'Create and sequence at least three online fields with the goal of collecting anonymous responses.',
+  },
+  {
+    id: 'output',
+    number: '06',
+    title: 'Survey output',
+    prompt: 'In detail, speculate on the kind of output (book? infographic? data sculpture? etc.) you can produce with your survey results.',
+    placeholder: 'Write your speculation…',
   },
 ];
 
@@ -143,7 +157,9 @@ const blankAnswers = () => ({
   names: '',
   topic: '',
   questions: blankQuestions(),
+  format: '',
   surveys: blankSurveys(),
+  output: '',
 });
 
 const readAnswer = (step, saved) => {
@@ -161,7 +177,9 @@ const loadAnswers = () => {
       names: readAnswer(steps[0], saved),
       topic: readAnswer(steps[1], saved),
       questions: readQuestions(saved.questions),
+      format: readAnswer(steps[3], saved),
       surveys: readSurveys(saved.surveys),
+      output: readAnswer(steps[5], saved),
     };
   } catch {
     return blank;
@@ -655,6 +673,12 @@ function SpeculativeInterview() {
             ))}
           </ol>
         )}
+        {(answers.format || '').trim() && (
+          <div className="interview-print-response">
+            <h2>Interview format</h2>
+            <p>{answers.format.trim()}</p>
+          </div>
+        )}
         {surveyBrief.length > 0 && writtenSurveys.length > 0 && (
           <div className="interview-print-brief">
             {surveyBrief.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
@@ -669,6 +693,12 @@ function SpeculativeInterview() {
               </li>
             ))}
           </ol>
+        )}
+        {(answers.output || '').trim() && (
+          <div className="interview-print-response">
+            <h2>Survey output</h2>
+            <p>{answers.output.trim()}</p>
+          </div>
         )}
       </article>
 
@@ -700,6 +730,17 @@ function SpeculativeInterview() {
               <QuestionList questions={answers.questions} onChange={setQuestions} />
             ) : step.id === 'surveys' ? (
               <SurveyList fields={answers.surveys} onChange={setSurveys} />
+            ) : step.id === 'format' || step.id === 'output' ? (
+              <textarea
+                className="interview-response"
+                value={answers[step.id] || ''}
+                placeholder={step.placeholder}
+                aria-labelledby={`${step.id}-prompt`}
+                onChange={(event) => {
+                  const { value } = event.target;
+                  setAnswers((current) => ({ ...current, [step.id]: value }));
+                }}
+              />
             ) : step.options ? (
               <select
                 className={answers[step.id] ? '' : 'is-empty'}
@@ -733,6 +774,11 @@ function SpeculativeInterview() {
             )}
             {index === revealed - 1 && index < steps.length - 1 && !isStepComplete(step, answers) && (
               <p className="interview-step-note">Complete this step to continue.</p>
+            )}
+            {step.id === 'format' && (
+              <button className="export-pdf" type="button" onClick={() => window.print()}>
+                Export PDF
+              </button>
             )}
           </div>
         </section>
