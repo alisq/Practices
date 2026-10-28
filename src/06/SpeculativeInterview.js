@@ -8,12 +8,13 @@ const topics = [
   'History and Evolution of Visual Language',
   'Early History of the Web and Interaction Design',
   'Platform Cooperatives and New Digital Models for Ownership',
-  'Public Domain and Open Source Information',
+  'Opioid Addiction & Harm Reduction',
+  
 ];
 
 const topicBriefs = {
   'History and Evolution of Visual Language': [
-    'Your expert is an author, theorist and cultural critic whose research on alphabet historiography, modeling interpretation for electronic scholarship, digital aesthetics, the history of visual information design, history of the book and print culture, history of information, and critical studies in visual knowledge representation. Her recent book draws on digital humanities, media studies, and graphic design history to build a shared vocabulary for analyzing how charts, diagrams, maps, and other visuals communicate knowledge. She also explains how the layout and structure of these visuals shape the meaning we take from them.',
+    'Your expert is an author, theorist and cultural critic whose research on alphabet historiography,digital aesthetics, the history of visual information design,  and critical studies in visual knowledge representation. Her recent book draws on digital humanities, media studies, and graphic design history to build a shared vocabulary for analysing how charts, diagrams, maps, and other visuals communicate knowledge.',
     'Your interview is geared towards getting her to apply her historical research to critically analyze the ways that interfaces are changing with the rise of Large Language Models and Agentic AI.',
   ],
   'Early History of the Web and Interaction Design': [
@@ -23,6 +24,10 @@ const topicBriefs = {
   'Platform Cooperatives and New Digital Models for Ownership': [
     'Your expert is an academic whose work focused on cooperative entrepreneurship in the digital economy. He has written several books both critiquing current structures of the digital economy and promoting alternative models. Furthermore, he has developed  the guiding principles for “platform cooperatives,” worker-owned alternatives to digital “gig economy” services such as Uber and Instacart that promote economic, social, labor, and environmental justice.',
 	  'The goal of your interview is to better understand why he feels the need to develop an alternative to the existing “gig economy” model.'
+  ],
+  'Opioid Addiction & Harm Reduction': [
+    'Your expert is a medical doctor, writer and advocate. For many years, she worked providing direct health care services as well as research and advocacy activities on behalf of those who are sick and living in poverty. In recent years, she has written about her experiences as a front line health professional in the midst of the opioid crisis.',
+	  'The goal of your interview is to gain insights into causal factors leading to drug addiction as well as harm reduction strategies that are effective',
   ],
   
 };
@@ -36,6 +41,9 @@ const surveyBriefs = {
   ],
   'Platform Cooperatives and New Digital Models for Ownership': [
     'You are designing a survey for gig economy workers to determine the "pain points" of their current working experiences.'
+  ],
+  'Opioid Addiction & Harm Reduction': [
+    'You are designing an emergency kit for drug users. This survey will help assess their needs.'
   ]
 };
 
@@ -775,7 +783,7 @@ function SpeculativeInterview() {
             {index === revealed - 1 && index < steps.length - 1 && !isStepComplete(step, answers) && (
               <p className="interview-step-note">Complete this step to continue.</p>
             )}
-            {step.id === 'format' && (
+            {step.id === 'output' && (
               <button className="export-pdf" type="button" onClick={() => window.print()}>
                 Export PDF
               </button>
