@@ -1,0 +1,795 @@
+.user-research-shell {
+  --mark: var(--ink);
+  min-height: 100%;
+  color: var(--ink);
+  background: var(--paper);
+}
+
+.user-research-topbar {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.65rem 3rem;
+  border-bottom: 1px solid var(--line);
+  background: var(--paper);
+}
+
+.user-research-home-link {
+  color: inherit;
+  font: 700 0.62rem/1 var(--font-sans);
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.user-research-topbar h1 {
+  margin: 0;
+  font: 700 0.72rem/1 var(--font-sans);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.user-research-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.user-research-shell .export-pdf,
+.user-research-shell .reset-button {
+  padding: 0.65rem 0.9rem;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  color: var(--ink);
+  background: var(--paper);
+  font: 700 0.65rem/1 var(--font-sans);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.user-research-shell .reset-button {
+  background: transparent;
+}
+
+.user-research-shell .export-pdf:hover,
+.user-research-shell .reset-button:hover {
+  color: #000;
+  background: var(--mark);
+}
+
+.user-research-confirm {
+  position: fixed;
+  z-index: 20;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  background: rgba(0, 0, 0, 0.72);
+}
+
+.user-research-confirm-panel {
+  width: min(100%, 22rem);
+  display: grid;
+  gap: 1.25rem;
+  padding: 1.4rem 1.35rem 1.25rem;
+  border: 1px solid var(--ink);
+  background: var(--paper);
+  box-shadow: 0.28rem 0.3rem 0 var(--ink);
+}
+
+.user-research-confirm-panel p {
+  margin: 0;
+  font: 400 1.6rem/1.15 var(--font-serif);
+  letter-spacing: -0.03em;
+}
+
+.user-research-confirm-actions {
+  display: flex;
+  gap: 0.65rem;
+}
+
+.user-research-confirm-actions button {
+  padding: 0.65rem 0.9rem;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  color: var(--ink);
+  background: transparent;
+  font: 700 0.65rem/1 var(--font-sans);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.user-research-confirm-actions button:hover,
+.user-research-confirm-actions button:focus-visible {
+  outline: none;
+  color: #000;
+  background: var(--mark);
+}
+
+.user-research-step {
+  display: grid;
+  align-content: start;
+  gap: 2.5rem;
+  padding: 7rem 3rem 4rem;
+}
+
+.user-research-step + .user-research-step {
+  padding-top: 3rem;
+  border-top: 1px solid var(--line);
+}
+
+.user-research-step.is-split {
+  grid-template-columns: minmax(0, 42rem) minmax(0, 1fr);
+  column-gap: 2.5rem;
+  align-items: start;
+}
+
+.user-research-step-main {
+  display: grid;
+  gap: 2.5rem;
+  min-width: 0;
+}
+
+.user-research-step-main .user-research-step-body {
+  width: 100%;
+}
+
+.user-research-studio {
+  margin: 0;
+  min-width: 0;
+}
+
+.user-research-studio img {
+  display: none;
+  width: 100%;
+  height: auto;
+}
+
+.user-research-studio img:first-child {
+  display: block;
+}
+
+html.contrast .user-research-studio img:first-child {
+  display: none;
+}
+
+html.contrast .user-research-studio img:last-child {
+  display: block;
+}
+
+.user-research-step-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--ink);
+}
+
+.user-research-step-label {
+  display: flex;
+  align-items: baseline;
+  gap: 0.85rem;
+  margin: 0;
+  font: 700 0.72rem/1 var(--font-sans);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.user-research-step-number {
+  padding: 0.3rem 0.45rem;
+  border: 1px solid var(--ink);
+}
+
+.user-research-step-body {
+  display: grid;
+  gap: 2rem;
+  width: min(100%, 42rem);
+}
+
+.user-research-step-body.is-board {
+  width: 100%;
+}
+
+.user-research-step-body.is-board .user-research-step-copy {
+  width: min(100%, 42rem);
+}
+
+.user-research-step-copy {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.user-research-step-prompt {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(1.9rem, 3.2vw, 3.1rem);
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+}
+
+.user-research-written {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(1.45rem, 2.4vw, 2.15rem);
+  line-height: 1.32;
+  letter-spacing: -0.03em;
+}
+
+.user-research-note {
+  max-width: 38rem;
+  margin: 0;
+  font: 400 1.05rem/1.45 var(--font-serif);
+}
+
+.user-research-names {
+  width: 100%;
+  min-height: 6.5rem;
+  padding: 0.95rem 1rem;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  color: var(--ink);
+  background: var(--paper);
+  box-shadow: 0.28rem 0.3rem 0 var(--ink);
+  font: 400 1.15rem/1.45 var(--font-serif);
+  resize: vertical;
+}
+
+.user-research-names::placeholder {
+  color: var(--muted);
+}
+
+.user-research-names-print {
+  display: none;
+}
+
+.user-research-names:focus {
+  outline: none;
+  color: #000;
+  background: var(--mark);
+}
+
+.user-research-editor {
+  width: 100%;
+  border: 1px solid var(--ink);
+  background: var(--paper);
+  box-shadow: 0.28rem 0.3rem 0 var(--ink);
+}
+
+.user-research-editor-toolbar {
+  display: flex;
+  border-bottom: 1px solid var(--ink);
+}
+
+.user-research-editor-toolbar button {
+  min-width: 2.4rem;
+  min-height: 2.2rem;
+  padding: 0.5rem 0.7rem;
+  border: 0;
+  border-right: 1px solid var(--ink);
+  border-radius: 0;
+  color: var(--ink);
+  background: transparent;
+  font: 700 0.72rem/1 var(--font-sans);
+  cursor: pointer;
+}
+
+.user-research-editor-toolbar button:hover,
+.user-research-editor-toolbar button:focus-visible {
+  outline: none;
+  color: #000;
+  background: var(--mark);
+}
+
+.user-research-editor-surface {
+  min-height: 14rem;
+  padding: 0.95rem 1rem;
+  outline: none;
+  font: 400 1.15rem/1.45 var(--font-serif);
+  font-synthesis: weight style;
+  overflow-wrap: anywhere;
+}
+
+.user-research-editor-surface:focus,
+.user-research-editor-surface:focus-within {
+  color: #000;
+  background: var(--mark);
+}
+
+.user-research-editor-surface:empty::before {
+  color: var(--muted);
+  content: attr(data-placeholder);
+  pointer-events: none;
+}
+
+.user-research-editor-surface:focus:empty::before,
+.user-research-editor-surface:focus-within:empty::before {
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.user-research-editor-surface u {
+  text-underline-offset: 0.15em;
+}
+
+.user-research-board-wrap {
+  display: grid;
+  gap: 1.35rem;
+}
+
+.user-research-board {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  border-top: 1px solid var(--ink);
+  border-left: 1px solid var(--ink);
+}
+
+.user-research-quadrant {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  min-height: 0;
+  padding: 1.25rem;
+  border-right: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+}
+
+.user-research-quadrant.is-drop {
+  background: var(--wash-strong);
+}
+
+.user-research-quadrant-label {
+  display: grid;
+  justify-items: center;
+  gap: 0.55rem;
+  width: min(16rem, 100%);
+  margin: 0;
+  text-align: center;
+  pointer-events: none;
+}
+
+.user-research-quadrant-label h2 {
+  margin: 0;
+  font: 700 0.78rem/1.2 var(--font-sans);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.user-research-quadrant-label p {
+  margin: 0;
+  font: 400 1.05rem/1.35 var(--font-serif);
+  letter-spacing: -0.02em;
+}
+
+.user-research-loose-cards {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: start;
+  gap: 0.55rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.user-research-card {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 0.2rem;
+  width: min(100%, 14rem);
+  padding: 0.3rem;
+  border: 1px solid var(--ink);
+  background: var(--paper);
+  box-shadow: 0.18rem 0.2rem 0 var(--ink);
+  cursor: grab;
+  touch-action: none;
+}
+
+.user-research-card.is-placed {
+  position: absolute;
+  z-index: 2;
+}
+
+.user-research-card.is-dragging {
+  cursor: grabbing;
+}
+
+.user-research-card-grip {
+  display: grid;
+  place-items: center;
+  width: 1.15rem;
+  height: 1.7rem;
+  padding: 0;
+  border: 0;
+  color: var(--ink);
+  background: transparent;
+  cursor: grab;
+}
+
+.user-research-card-grip:active {
+  cursor: grabbing;
+}
+
+.user-research-card-grip:focus-visible {
+  outline: none;
+  color: #000;
+  background: var(--mark);
+}
+
+.user-research-card-grip-mark {
+  display: block;
+  width: 0.7rem;
+  height: 0.55rem;
+  background:
+    linear-gradient(currentColor, currentColor) 0 0 / 100% 1px no-repeat,
+    linear-gradient(currentColor, currentColor) 0 50% / 100% 1px no-repeat,
+    linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat;
+}
+
+.user-research-card textarea {
+  display: block;
+  width: 100%;
+  min-height: 2.5rem;
+  padding: 0.35rem 0.3rem;
+  border: 0;
+  color: var(--ink);
+  background: transparent;
+  font: 400 0.98rem/1.35 var(--font-serif);
+  cursor: text;
+  resize: none;
+  overflow: hidden;
+  touch-action: auto;
+}
+
+.user-research-card textarea::placeholder {
+  color: var(--muted);
+}
+
+.user-research-card textarea:focus {
+  outline: none;
+  color: #000;
+  background: var(--mark);
+}
+
+.user-research-card-remove {
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
+  border: 0;
+  color: var(--ink);
+  background: transparent;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 1.45rem;
+  font-weight: 400;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.user-research-card-remove:hover,
+.user-research-card-remove:focus-visible {
+  outline: none;
+  color: #000;
+  background: var(--mark);
+}
+
+.user-research-card-dock {
+  display: grid;
+  gap: 0.9rem;
+  justify-items: start;
+}
+
+.user-research-card-dock.is-drop {
+  background: var(--wash);
+}
+
+.user-research-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.user-research-journey {
+  display: grid;
+  gap: 1.35rem;
+  justify-items: start;
+}
+
+.user-research-conditions {
+  display: grid;
+  gap: 0.85rem;
+  margin: 0;
+}
+
+.user-research-conditions div {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.user-research-conditions dt {
+  margin: 0;
+  font: 700 0.65rem/1 var(--font-sans);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.user-research-conditions dd {
+  margin: 0;
+  font: 400 1.05rem/1.4 var(--font-serif);
+}
+
+.user-research-phases {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 0.85rem;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.user-research-phase {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  min-width: 0;
+  min-height: 36rem;
+  padding: 0.9rem;
+  border: 1px solid var(--ink);
+  background: var(--paper);
+}
+
+.user-research-phase-tools {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.user-research-phase-tools button {
+  min-width: 1.7rem;
+  height: 1.7rem;
+  padding: 0 0.3rem;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  color: var(--ink);
+  background: transparent;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.user-research-phase-tools button:hover:not(:disabled),
+.user-research-phase-tools button:focus-visible:not(:disabled) {
+  outline: none;
+  color: #000;
+  background: var(--mark);
+}
+
+.user-research-phase-tools button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.user-research-phase-delete {
+  margin-left: auto;
+  font-size: 1.25rem;
+}
+
+.user-research-phase-number {
+  align-self: flex-start;
+  margin: 0;
+  padding: 0.3rem 0.45rem;
+  border: 1px solid var(--ink);
+  font: 700 0.72rem/1 var(--font-sans);
+  letter-spacing: 0.06em;
+}
+
+.user-research-phase input,
+.user-research-phase textarea {
+  width: 100%;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  color: var(--ink);
+  background: var(--paper);
+  font: 400 1rem/1.4 var(--font-serif);
+}
+
+.user-research-phase input {
+  padding: 0.7rem 0.75rem;
+}
+
+.user-research-phase textarea {
+  min-height: 6.5rem;
+  padding: 0.7rem 0.75rem;
+  resize: vertical;
+}
+
+.user-research-phase input::placeholder {
+  color: var(--muted);
+}
+
+.user-research-phase input:focus,
+.user-research-phase textarea:focus {
+  outline: none;
+  color: #000;
+  background: var(--mark);
+}
+
+.user-research-phase-field {
+  display: grid;
+  flex: 1;
+  gap: 0.4rem;
+  min-height: 0;
+}
+
+.user-research-phase-field span {
+  font: 700 0.62rem/1 var(--font-sans);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.user-research-phase-field textarea {
+  height: 100%;
+  min-height: 6.5rem;
+}
+
+.user-research-add-card,
+.user-research-add-phase {
+  padding: 0.75rem 0.95rem;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  color: var(--ink);
+  background: var(--paper);
+  font: 700 0.65rem/1 var(--font-sans);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.user-research-add-card:hover,
+.user-research-add-card:focus-visible,
+.user-research-add-phase:hover,
+.user-research-add-phase:focus-visible {
+  outline: none;
+  color: #000;
+  background: var(--mark);
+}
+
+.user-research-card-count {
+  margin: 0;
+  font: 700 0.65rem/1 var(--font-sans);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 720px) {
+  .user-research-topbar {
+    padding: 0.55rem 1.25rem;
+  }
+
+  .user-research-topbar h1 {
+    display: none;
+  }
+
+  .user-research-actions {
+    gap: 0.45rem;
+  }
+
+  .user-research-shell .export-pdf,
+  .user-research-shell .reset-button {
+    padding: 0.5rem 0.55rem;
+  }
+
+  .user-research-step {
+    padding: 6rem 1.25rem 4rem;
+  }
+
+  .user-research-step + .user-research-step {
+    padding-top: 2.5rem;
+  }
+
+  .user-research-step.is-split {
+    grid-template-columns: 1fr;
+  }
+
+  .user-research-board,
+  .user-research-phases {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media print {
+  .user-research-topbar {
+    position: static;
+    width: auto;
+    height: auto;
+  }
+
+  .user-research-actions {
+    display: none;
+  }
+
+  .user-research-step {
+    padding-top: 1.5rem;
+  }
+
+  .user-research-editor-toolbar,
+  .user-research-phase-tools button,
+  .user-research-add-card,
+  .user-research-add-phase,
+  .user-research-card-grip,
+  .user-research-card-remove,
+  .user-research-card-count,
+  .is-names .user-research-step-head,
+  .is-names .user-research-step-copy,
+  .user-research-names,
+  .is-brief,
+  .is-observation .user-research-written,
+  .is-journey .user-research-step-copy,
+  .is-cards .user-research-step-copy,
+  .user-research-quadrant-label p {
+    display: none;
+  }
+
+  .user-research-names-print {
+    display: block;
+    margin: 0;
+    font: 400 1.15rem/1.45 var(--font-serif);
+  }
+
+  .is-observation .user-research-editor {
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .is-observation .user-research-editor-surface {
+    min-height: 0;
+    padding: 0;
+    color: inherit;
+    background: transparent;
+  }
+
+  .is-observation .user-research-editor-surface:empty::before {
+    content: none;
+  }
+
+  .user-research-phase input,
+  .user-research-phase textarea {
+    padding-right: 0;
+    padding-left: 0;
+    border: 0;
+    background: transparent;
+    appearance: none;
+  }
+
+  .user-research-card {
+    width: min(100%, 7rem);
+    padding: 0.15rem;
+    background: #fff;
+    box-shadow: none;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .user-research-card textarea {
+    min-height: 0;
+    padding: 0.1rem 0.15rem;
+    font-size: 0.49rem;
+    line-height: 1.3;
+    background: #fff;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+}

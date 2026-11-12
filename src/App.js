@@ -7,6 +7,7 @@ import ArtifactAnnotation from './03/ArtifactAnnotation';
 import TextAnalysis from './04/TextAnalysis';
 import ArtifactScavenger from './05/ArtifactScavenger';
 import SpeculativeInterview from './06/SpeculativeInterview';
+import UserResearch from './07/UserResearch';
 
 const CONTRAST_KEY = 'practices-contrast';
 
@@ -72,6 +73,7 @@ function App() {
         <Route path="/04" element={<TextAnalysis />} />
         <Route path="/05" element={<ArtifactScavenger />} />
         <Route path="/06" element={<SpeculativeInterview />} />
+        <Route path="/07" element={<UserResearch />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
       <ContrastToggle />

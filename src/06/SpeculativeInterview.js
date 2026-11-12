@@ -73,7 +73,8 @@ const steps = [
     id: 'format',
     number: '04',
     title: 'Interview format',
-    prompt: 'Speculate on the format of the interview (online? in person? ideal location for the interview? One-on-one? Multiple interviewers? Snack offerings? etc.) Justify your decisions.',
+    prompt: 'Speculate on the format of the interview. Justify your decisions.',
+    subtitle: 'Online? in person? ideal location for the interview? One-on-one? Multiple interviewers? Snack offerings? etc.',
     placeholder: 'Write your speculation…',
   },
   {
@@ -86,7 +87,8 @@ const steps = [
     id: 'output',
     number: '06',
     title: 'Survey output',
-    prompt: 'In detail, speculate on the kind of output (book? infographic? data sculpture? etc.) you can produce with your survey results.',
+    prompt: 'In detail, speculate on the kind of output you can produce with your survey results.',
+    subtitle: 'Book? Infographic? Data sculpture? etc. Keep in mind, this is JUST ffor the survey portion. ',
     placeholder: 'Write your speculation…',
   },
 ];
@@ -733,7 +735,12 @@ function SpeculativeInterview() {
                 {surveyBrief.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
               </div>
             )}
-            <p className="interview-step-prompt" id={`${step.id}-prompt`}>{step.prompt}</p>
+            <div className="interview-step-copy">
+              <p className="interview-step-prompt" id={`${step.id}-prompt`}>{step.prompt}</p>
+              {step.subtitle && (
+                <p className="interview-step-subtitle" id={`${step.id}-subtitle`}>{step.subtitle}</p>
+              )}
+            </div>
             {step.id === 'questions' ? (
               <QuestionList questions={answers.questions} onChange={setQuestions} />
             ) : step.id === 'surveys' ? (
@@ -743,7 +750,7 @@ function SpeculativeInterview() {
                 className="interview-response"
                 value={answers[step.id] || ''}
                 placeholder={step.placeholder}
-                aria-labelledby={`${step.id}-prompt`}
+                aria-labelledby={step.subtitle ? `${step.id}-prompt ${step.id}-subtitle` : `${step.id}-prompt`}
                 onChange={(event) => {
                   const { value } = event.target;
                   setAnswers((current) => ({ ...current, [step.id]: value }));

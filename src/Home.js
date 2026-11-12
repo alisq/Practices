@@ -39,6 +39,12 @@ const practices = [
     title: 'Speculative Interview',
     description: 'Plan an expert interview and user survey on a given topic.',
   },
+  {
+    path: '/07',
+    number: '07',
+    title: 'User Research Methods',
+    description: 'map out a user experience',
+  },
 ];
 
 function Home() {
