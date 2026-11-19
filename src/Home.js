@@ -45,6 +45,12 @@ const practices = [
     title: 'User Research Methods',
     description: 'map out a user experience',
   },
+  {
+    path: '/08',
+    number: '08',
+    title: 'Autosyllabus',
+    description: 'Create a custom syllabus for your self-initiated skill.',
+  },
 ];
 
 function Home() {

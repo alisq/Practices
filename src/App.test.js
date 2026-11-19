@@ -10,4 +10,5 @@ test('renders the practices index with a link to each practice', () => {
   expect(screen.getByRole('link', { name: /text analysis/i })).toHaveAttribute('href', '/04');
   expect(screen.getByRole('link', { name: /artifact scavenger hunt/i })).toHaveAttribute('href', '/05');
   expect(screen.getByRole('link', { name: /speculative interview/i })).toHaveAttribute('href', '/06');
+  expect(screen.getByRole('link', { name: /autosyllabus/i })).toHaveAttribute('href', '/08');
 });
