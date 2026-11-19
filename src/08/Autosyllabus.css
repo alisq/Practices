@@ -193,8 +193,7 @@
   background: var(--mark);
 }
 
-.syllabus-name-print,
-.syllabus-question-print {
+.syllabus-print {
   display: none;
 }
 
@@ -448,81 +447,98 @@
 }
 
 @media print {
-  .syllabus-topbar {
-    position: static;
-    width: auto;
+  body.practice-08,
+  body.practice-08 #root {
     height: auto;
+    overflow: visible;
   }
 
-  .syllabus-actions {
+  .syllabus-shell {
+    background: #fff;
+  }
+
+  .syllabus-topbar,
+  .syllabus-step,
+  .syllabus-confirm {
     display: none;
   }
 
-  .syllabus-step {
-    padding-top: 1.5rem;
-  }
-
-  .is-name .syllabus-step-head,
-  .is-name .syllabus-step-prompt,
-  .syllabus-name,
-  .syllabus-question,
-  .is-skill .syllabus-editor-toolbar {
-    display: none;
-  }
-
-  .is-skill .syllabus-editor {
-    border: 0;
-    background: transparent;
-    box-shadow: none;
-  }
-
-  .is-skill .syllabus-editor-surface {
-    min-height: 0;
-    padding: 0;
-    color: inherit;
-    background: transparent;
-  }
-
-  .is-skill .syllabus-editor-surface:empty::before {
-    content: none;
-  }
-
-  .syllabus-name-print,
-  .syllabus-question-print {
+  .syllabus-print {
     display: block;
-    margin: 0;
-    font: 400 1.15rem/1.45 var(--font-serif);
+    color: #151515;
+    background: #fff;
+  }
+
+  .syllabus-print-name {
+    margin: 0 0 1.15rem;
+    font: 700 9pt/1.2 var(--font-sans);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .syllabus-print-question {
+    margin: 0 0 1.35rem;
+    font: 400 26pt/1.15 var(--font-serif);
+    letter-spacing: -0.03em;
     white-space: pre-wrap;
   }
 
-  .syllabus-week {
-    break-inside: avoid;
-    box-shadow: none;
-  }
-
-  .syllabus-phase input,
-  .syllabus-links input,
-  .syllabus-links ol,
-  .syllabus-add,
-  .syllabus-link-remove {
-    display: none;
-  }
-
-  .syllabus-print-value {
-    display: block;
+  .syllabus-print-skill {
     margin: 0;
-    font: 400 1.05rem/1.4 var(--font-serif);
+    font: 400 11pt/1.5 var(--font-serif);
   }
 
-  .syllabus-print-links {
-    display: block;
+  .syllabus-print-skill p,
+  .syllabus-print-skill div {
     margin: 0;
-    padding-left: 1.1rem;
-    font: 400 0.95rem/1.45 var(--font-serif);
-    overflow-wrap: anywhere;
   }
 
-  .syllabus-print-links a {
+  .syllabus-print-skill u {
+    text-underline-offset: 0.12em;
+  }
+
+  .syllabus-print-week {
+    margin-top: 1.75rem;
+  }
+
+  .syllabus-print-week h2 {
+    margin: 0 0 0.55rem;
+    font: 700 9pt/1.2 var(--font-sans);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .syllabus-print-objectives {
+    margin: 0 0 0.9rem;
+    font: 400 26pt/1.15 var(--font-serif);
+    letter-spacing: -0.03em;
+  }
+
+  .syllabus-print-group h3 {
+    margin: 0 0 0.45rem;
+    font: 700 9pt/1.2 var(--font-sans);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .syllabus-print-group + .syllabus-print-group {
+    margin-top: 1rem;
+  }
+
+  .syllabus-print-link {
+    margin: 0 0 0.8rem;
+  }
+
+  .syllabus-print-link-title {
+    display: block;
+    font: 400 11pt/1.35 var(--font-serif);
+  }
+
+  .syllabus-print-link a {
+    display: block;
     color: inherit;
+    font: 400 9pt/1.35 var(--font-sans);
+    text-decoration: none;
+    overflow-wrap: anywhere;
   }
 }

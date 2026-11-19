@@ -48,7 +48,7 @@ const createLinkId = () => {
   return `link-${Date.now().toString(36)}-${linkIdCounter}`;
 };
 
-const emptyLink = () => ({ id: createLinkId(), url: '' });
+const emptyLink = () => ({ id: createLinkId(), url: '', title: '' });
 
 const readLinks = (value) => {
   const list = (Array.isArray(value) ? value : [])
@@ -56,6 +56,7 @@ const readLinks = (value) => {
     .map((entry) => ({
       id: typeof entry.id === 'string' ? entry.id : createLinkId(),
       url: typeof entry.url === 'string' ? entry.url : '',
+      title: typeof entry.title === 'string' ? entry.title : '',
     }));
   return list.length ? list : [emptyLink()];
 };
@@ -77,6 +78,36 @@ const readWeeks = (value) => {
       readings: readLinks(entry.readings),
     };
   });
+};
+
+const canFetchTitle = (value) => {
+  const href = linkHref(value);
+  if (!href) return false;
+  try {
+    return new URL(href).hostname.includes('.');
+  } catch {
+    return false;
+  }
+};
+
+const fetchPageTitle = async (value) => {
+  const href = linkHref(value);
+  if (!href) return '';
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 6000);
+  try {
+    const response = await fetch(`https://api.microlink.io/?url=${encodeURIComponent(href)}`, {
+      signal: controller.signal,
+    });
+    if (!response.ok) return '';
+    const data = await response.json();
+    const title = data?.data?.title;
+    return typeof title === 'string' ? title.replace(/\s+/g, ' ').trim() : '';
+  } catch {
+    return '';
+  } finally {
+    clearTimeout(timer);
+  }
 };
 
 const linkHref = (value) => {
@@ -210,9 +241,25 @@ function FormatEditor({ value, labelledBy, placeholder, onChange }) {
   );
 }
 
-function LinkList({ links, label, placeholder, onChange }) {
+function PrintLink({ link }) {
+  const href = linkHref(link.url);
+  const url = link.url.trim();
+  const title = (link.title || '').trim();
+  const showTitle = title && title !== url;
+  return (
+    <p className="syllabus-print-link">
+      {showTitle && <span className="syllabus-print-link-title">{title}</span>}
+      {href ? <a href={href}>{url}</a> : url}
+    </p>
+  );
+}
+
+function LinkList({ links, label, placeholder, onChange, onRetitle }) {
   const [focusId, setFocusId] = useState(null);
   const inputs = useRef({});
+  const retitleRef = useRef(onRetitle);
+  const attempted = useRef(new Set());
+  retitleRef.current = onRetitle;
 
   useEffect(() => {
     if (!focusId) return undefined;
@@ -221,8 +268,35 @@ function LinkList({ links, label, placeholder, onChange }) {
     return undefined;
   }, [focusId]);
 
+  useEffect(() => {
+    const pending = links.filter((link) => {
+      const url = link.url.trim();
+      return canFetchTitle(url) && !link.title && !attempted.current.has(`${link.id}|${url}`);
+    });
+    if (!pending.length) return undefined;
+    const timer = setTimeout(() => {
+      pending.forEach((link) => {
+        const url = link.url.trim();
+        attempted.current.add(`${link.id}|${url}`);
+        fetchPageTitle(url).then((title) => {
+          if (title) retitleRef.current?.(link.id, title, url);
+        });
+      });
+    }, 700);
+    return () => clearTimeout(timer);
+  }, [links]);
+
   const update = (id, url) => {
-    onChange(links.map((link) => (link.id === id ? { ...link, url } : link)));
+    onChange(links.map((link) => (
+      link.id === id ? { ...link, url, title: link.url === url ? (link.title || '') : '' } : link
+    )));
+  };
+
+  const retitle = (id, url) => {
+    if (!canFetchTitle(url)) return;
+    fetchPageTitle(url).then((title) => {
+      if (title) retitleRef.current?.(id, title, url);
+    });
   };
 
   const addAt = (index) => {
@@ -256,6 +330,7 @@ function LinkList({ links, label, placeholder, onChange }) {
               placeholder={placeholder}
               aria-label={`${label} ${index + 1}`}
               onChange={(event) => update(link.id, event.target.value)}
+              onBlur={(event) => retitle(link.id, event.target.value.trim())}
               onKeyDown={(event) => {
                 if (event.key === 'Enter') {
                   event.preventDefault();
@@ -305,7 +380,7 @@ function Autosyllabus() {
   useEffect(() => {
     document.body.classList.add('practice-08');
     const printRules = document.createElement('style');
-    printRules.textContent = '@page { margin: 1.4cm; } @media print { html { height: auto; overflow: visible; } }';
+    printRules.textContent = '@page { margin: 0.5in; } @media print { html { height: auto; overflow: visible; } }';
     document.head.appendChild(printRules);
     return () => {
       document.body.classList.remove('practice-08');
@@ -358,6 +433,42 @@ function Autosyllabus() {
         </div>
       </header>
 
+      <article className="syllabus-print">
+        {answers.name.trim() && <p className="syllabus-print-name">{answers.name.trim()}</p>}
+        {answers.question.trim() && <p className="syllabus-print-question">{answers.question.trim()}</p>}
+        {answers.skill.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ').trim() && (
+          <div
+            className="syllabus-print-skill"
+            dangerouslySetInnerHTML={{ __html: sanitizeFormat(answers.skill) }}
+          />
+        )}
+        {answers.weeks.map((week, index) => {
+          const resources = week.skills.filter((link) => link.url.trim());
+          const readings = week.readings.filter((link) => link.url.trim());
+          const objectives = week.phase.trim();
+          if (!objectives && !resources.length && !readings.length) return null;
+          const number = String(index + 1).padStart(2, '0');
+          return (
+            <section className="syllabus-print-week" key={number}>
+              <h2>Week {number}</h2>
+              {objectives && <p className="syllabus-print-objectives">{objectives}</p>}
+              {resources.length > 0 && (
+                <div className="syllabus-print-group">
+                  <h3>Resources</h3>
+                  {resources.map((link) => <PrintLink link={link} key={link.id} />)}
+                </div>
+              )}
+              {readings.length > 0 && (
+                <div className="syllabus-print-group">
+                  <h3>Critical links</h3>
+                  {readings.map((link) => <PrintLink link={link} key={link.id} />)}
+                </div>
+              )}
+            </section>
+          );
+        })}
+      </article>
+
       <section className="syllabus-step is-name" aria-label="Step 01: Your name">
         <div className="syllabus-step-head">
           <p className="syllabus-step-label">
@@ -378,8 +489,7 @@ function Autosyllabus() {
               const { value } = event.target;
               setAnswers((current) => ({ ...current, name: value }));
             }}
-          />
-          <p className="syllabus-name-print">{answers.name.trim()}</p>
+            />
         </div>
       </section>
 
@@ -407,7 +517,6 @@ function Autosyllabus() {
               setAnswers((current) => ({ ...current, question: value }));
             }}
           />
-          <p className="syllabus-question-print">{answers.question.trim()}</p>
         </div>
       </section>
 
@@ -449,6 +558,21 @@ function Autosyllabus() {
                 )),
               }));
             };
+            const retitle = (field) => (id, title, url) => {
+              setAnswers((current) => ({
+                ...current,
+                weeks: current.weeks.map((item, itemIndex) => (
+                  itemIndex === index
+                    ? {
+                        ...item,
+                        [field]: item[field].map((link) => (
+                          link.id === id && link.url.trim() === url.trim() ? { ...link, title } : link
+                        )),
+                      }
+                    : item
+                )),
+              }));
+            };
             return (
               <article className="syllabus-week" key={number} aria-label={`Week ${number}`}>
                 <h2>Week {number}</h2>
@@ -469,12 +593,14 @@ function Autosyllabus() {
                     label="Skill building resources"
                     placeholder="Paste a link to a tutorial/instructional resource"
                     onChange={(skills) => updateWeek({ skills })}
+                    onRetitle={retitle('skills')}
                   />
                   <LinkList
                     links={week.readings}
                     label="Critical readings/artists/artworks"
                     placeholder="Paste a link to critical or thematic resource"
                     onChange={(readings) => updateWeek({ readings })}
+                    onRetitle={retitle('readings')}
                   />
                 </div>
               </article>
